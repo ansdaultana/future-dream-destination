@@ -2,7 +2,7 @@
 import Navbar from '../Components/Navbar.vue';
 import Mainimg from '@/Components/Mainimg.vue';
 import ImageSlidder from '@/Components/ImageSlider.vue';
-import Footer from '@/Components/footer.vue'
+import Footer from '@/Components/Footer.vue'
 import Services from '@/Components/Services.vue';
 import { Head } from '@inertiajs/vue3';
 
@@ -13,6 +13,9 @@ import { Head } from '@inertiajs/vue3';
     </Navbar>
     <!-- <ImageSlidder /> -->
     <Mainimg />
-    <Services />
+    <div class="ml-20 mr-20">
+        <Services />
+
+    </div>
     <Footer />
 </template>

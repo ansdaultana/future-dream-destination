@@ -1,12 +1,14 @@
 <script setup>
-import imgforbox from '@/Components/imgforbox.vue'</script>
+import imgforbox from '@/Components/imgforbox.vue'
+import { Link } from '@inertiajs/vue3';
+</script>
 <template>
-    <div class=" z-0 flex items-center justify-center">
+    <div class=" mt-10">
         <div class="">
             <img src="https://res.cloudinary.com/ddrivhxfq/image/upload/v1693297556/viy7jbjfujn52ewrfhc0.jpg" alt=""
-                class=" w-screen h-auto rounded-b-lg z-0">
-            <div class="  z-40 flex items-center justify-center md:-mt-24">
-                <div class="m-2 w-full md:w-1/2 md:h-44 bg-slate-50 rounded-lg shadow-lg shadow-blue-300 hover:scale-105 hover:cursor-pointer transition-transform duration-200 ease-in-out animate-bounce">
+                class=" w-screen h-auto rounded-b-lg">
+            <div class=" flex items-center justify-center md:-mt-24" >
+                <div class="m-2 w-full md:w-1/2 md:h-44 bg-slate-50 rounded-xl shadow-lg shadow-blue-300 hover:cursor-pointer animate-bounce">
                     <div class="">
                         <div class="text-lg font-bold p-2 md:p-4">
                             <div class="flex">
@@ -33,10 +35,10 @@ import imgforbox from '@/Components/imgforbox.vue'</script>
                                 <imgforbox src="/booking2.jpg"/>
                                 <span class="p-2 md:w-14">Booking</span>
                               </div>
-                              <div class=" items-center p-1">
+                              <Link href="/tickets" class=" items-center p-1">
                                 <imgforbox src="/ticket2.jpg"/>
                                 <span class=" p-2 md:w-14">Tickets</span>
-                              </div>
+                              </Link>
                             </div>
                     </div>
                 </div>
