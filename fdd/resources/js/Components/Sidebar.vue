@@ -43,14 +43,45 @@ console.log(name)
                     </div>
                     <div class="pl-4 flex p-2">
                       
-                        <svg  :class="{ 'text-orange-500': name === 'app.products' }" class="" xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 640 512"><path d="M381 114.9L186.1 41.8c-16.7-6.2-35.2-5.3-51.1 2.7L89.1 67.4C78 73 77.2 88.5 87.6 95.2l146.9 94.5L136 240 77.8 214.1c-8.7-3.9-18.8-3.7-27.3 .6L18.3 230.8c-9.3 4.7-11.8 16.8-5 24.7l73.1 85.3c6.1 7.1 15 11.2 24.3 11.2H248.4c5 0 9.9-1.2 14.3-3.4L535.6 212.2c46.5-23.3 82.5-63.3 100.8-112C645.9 75 627.2 48 600.2 48H542.8c-20.2 0-40.2 4.8-58.2 14L381 114.9zM0 480c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32z"/></svg>
+                        <svg  :class="{ 'text-orange-500': name === 'Travel' }" class="" xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 640 512"><path d="M381 114.9L186.1 41.8c-16.7-6.2-35.2-5.3-51.1 2.7L89.1 67.4C78 73 77.2 88.5 87.6 95.2l146.9 94.5L136 240 77.8 214.1c-8.7-3.9-18.8-3.7-27.3 .6L18.3 230.8c-9.3 4.7-11.8 16.8-5 24.7l73.1 85.3c6.1 7.1 15 11.2 24.3 11.2H248.4c5 0 9.9-1.2 14.3-3.4L535.6 212.2c46.5-23.3 82.5-63.3 100.8-112C645.9 75 627.2 48 600.2 48H542.8c-20.2 0-40.2 4.8-58.2 14L381 114.9zM0 480c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32z"/></svg>
                         <div class="lg:ml-8 ml-2 hidden md:block" :class="{ 'text-orange-500': name === 'app.products' }">
-                            Plane Tickets
+                            Travel
                         </div>
 
                     </div>
                 </div>
             </router-link>
+            <Link :href="route('dashboard.tickets')">
+
+                <div id="container"
+                    class="flex  tansition-transform hover:scale-105 duration-200 ease-in hover:bg-white rounded-md hover:fill-orange-500 hover:text-orange-500 mt-3">
+                    <div class="bg-orange py-1 w-1" :class="{ 'bg-orange-500': name === 'tickets' }">
+
+                    </div>
+                    <div class="pl-10 flex p-2">
+                        <div class="lg:ml-8 ml-2 block" :class="{ 'text-orange-500': name === 'tickets' }">
+                            Tickets
+                        </div>
+
+                    </div>
+                </div>
+            </Link>
+            <Link :href="route('dashboard.visas')">
+            
+
+                <div id="container"
+                    class="flex  tansition-transform hover:scale-105 duration-200 ease-in hover:bg-white rounded-md hover:fill-orange-500 hover:text-orange-500 mt-3">
+                    <div class="bg-orange py-1 w-1" :class="{ 'bg-orange-500': name === 'visas' }">
+
+                    </div>
+                    <div class="pl-10 flex p-2">
+                        <div class="lg:ml-8 ml-2 block" :class="{ 'text-orange-500': name === 'visas' }">
+                            Visa
+                        </div>
+
+                    </div>
+                </div>
+            </Link>
             <router-link :to="{ name: 'app.users' }">
 
                 <div id="container"
@@ -67,32 +98,13 @@ console.log(name)
 
 
                         <div class="lg:ml-8 ml-2 hidden md:block" :class="{ 'text-orange-500': name === 'app.users' }">
-                            Users
+                            Tourism
                         </div>
 
                     </div>
                 </div>
             </router-link>
-            <router-link :to="{ name: 'app.reports' }">
-
-                <div id="container"
-                    class="flex  tansition-transform hover:scale-105 duration-200 ease-in hover:bg-white rounded-md  hover:text-orange-500 mt-3">
-                    <div class="bg-orange py-1 w-1" :class="{ 'bg-orange-500': name === 'app.reports' }">
-
-                    </div>
-                    <div class="pl-4 flex p-2">
-                        <svg :class="{ 'text-orange-500': name === 'app.reports' }" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-                        </svg>
-                        <div class="lg:ml-8 ml-2 hidden md:block" :class="{ 'text-orange-500': name === 'app.reports' }">
-                            Reports
-                        </div>
-
-                    </div>
-                </div>
-            </router-link>
+           
 
         </div>
     </div>

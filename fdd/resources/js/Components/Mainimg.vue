@@ -22,7 +22,7 @@ import imgforbox from '@/Components/imgforbox.vue'</script>
                         </div>
                             <div class="flex justify-between md:ml-5 md:mr-5 p-1 text-gray-600">
                               <div class=" items-center p-1">
-                                <imgforbox src="/visa.jpg"/>
+                                <imgforbox src="/visaa.jpg"/>
                                 <span class="ml-2 p-2 md:w-14 animate-pulse">Visas</span>
                               </div>
                               <div class=" items-center p-1">
