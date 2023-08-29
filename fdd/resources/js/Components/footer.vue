@@ -1,11 +1,11 @@
 <template>
-    <footer class="bg-neutral-900 text-white mt-8 py-8">
+    <footer class="bg-gradient-to-r from-blue-400 from-10% via-sky-400 via-30% to-blue-500 to-90% text-white mt-8 py-8">
         <div class="container mx-auto flex flex-col  justify-between items-center space-y-6">
             <div class="flex flex-col items-center justify-center pt-5">
                 <h2 class="text-2xl font-semibold">Future Dream Destination</h2>
-                <p class="mt-2 text-gray-400">A signature of Excellence</p>
+                <p class="mt-2 text-white">A signature of Excellence</p>
             </div>
-            <div class="h-0.5 bg-gray-600 w-full ">
+            <div class="h-0.5 bg-gray-300 w-full ">
 
             </div>
 
@@ -14,7 +14,7 @@
 
             <div class="flex flex-col items-center md:items-start">
                 <h3 class="text-xl font-semibold">Contact Us</h3>
-                <p class="mt-2 text-gray-400">
+                <p class="mt-2 text-white">
                     Email: info@fdd.com<br>
                     Phone: 123-456-7890
                 </p>
@@ -46,5 +46,5 @@
     </footer>
 </template>
 <style>#footer {
-    fill: rgb(255, 106, 0);
+    fill: rgb(255, 255, 255);
 }</style>

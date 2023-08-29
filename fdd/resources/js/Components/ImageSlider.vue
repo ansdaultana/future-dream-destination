@@ -37,7 +37,7 @@
   
   const images = ref([
     'https://res.cloudinary.com/ddrivhxfq/image/upload/v1693287042/c36qkb1zzvjfkgreak8z.jpg',
-    'https://res.cloudinary.com/ddrivhxfq/image/upload/v1693208738/qhrepttc7mkzj4c9uujn.jpg',
+    //'https://res.cloudinary.com/ddrivhxfq/image/upload/v1693208738/qhrepttc7mkzj4c9uujn.jpg',
     'https://res.cloudinary.com/ddrivhxfq/image/upload/v1693287051/viyvqvdxvzbb29d5fh66.jpg'
   ]);
   
@@ -77,7 +77,7 @@
   .nav-buttons {
     display: flex;
     align-items: center;
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 0;
     right: 0;
