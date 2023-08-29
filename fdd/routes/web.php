@@ -20,7 +20,6 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Home');
 })->name('home');
-Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
 
 Route::get('/welcome', function () {
     return Inertia::render('Welcome', [
@@ -30,7 +29,6 @@ Route::get('/welcome', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

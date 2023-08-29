@@ -6,7 +6,7 @@ import imgforbox from '@/Components/imgforbox.vue'</script>
             <img src="https://res.cloudinary.com/ddrivhxfq/image/upload/v1693297556/viy7jbjfujn52ewrfhc0.jpg" alt=""
                 class=" w-screen h-auto rounded-b-lg z-0">
             <div class="  z-40 flex items-center justify-center md:-mt-24">
-                <div class="w-full md:w-2/5 md:h-44 bg-slate-50 rounded-lg shadow-lg shadow-blue-300 hover:scale-105 hover:cursor-pointer transition-transform duration-200 ease-in-out">
+                <div class="m-2 w-full md:w-1/2 md:h-44 bg-slate-50 rounded-lg shadow-lg shadow-blue-300 hover:scale-105 hover:cursor-pointer transition-transform duration-200 ease-in-out animate-bounce">
                     <div class="">
                         <div class="text-lg font-bold p-2 md:p-4">
                             <div class="flex">
@@ -19,17 +19,15 @@ import imgforbox from '@/Components/imgforbox.vue'</script>
         
                                     </span>
                             </div>
-                            
-
                         </div>
                             <div class="flex justify-between md:ml-5 md:mr-5 p-1 text-gray-600">
                               <div class=" items-center p-1">
-                                <imgforbox src="/visaa.jpg"/>
-                                <span class=" p-2 md:w-14 ">Visas</span>
+                                <imgforbox src="/visa.jpg"/>
+                                <span class="ml-2 p-2 md:w-14 animate-pulse">Visas</span>
                               </div>
                               <div class=" items-center p-1">
-                                <imgforbox src="/travel3.jpg"/>
-                                <span class="m-1 p-2 md:w-14">Tours</span>
+                                <imgforbox src="/tour2.jpg"/>
+                                <span class="ml-2 p-2 md:w-14">Tours</span>
                               </div>
                               <div class=" items-center p-1">
                                 <imgforbox src="/booking2.jpg"/>
@@ -59,5 +57,19 @@ import imgforbox from '@/Components/imgforbox.vue'</script>
     50% {
         opacity: .7;
     }
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(-3%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
 }
 </style>
