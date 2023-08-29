@@ -19,7 +19,7 @@ use Inertia\Inertia;
 
 Route::get('/',function (){
 return Inertia::render('Home');
-});
+})->name('home');
 Route::get('/admin',[AdminController::class,'index'])->middleware('auth');
 
 Route::get('/welcome', function () {
@@ -33,7 +33,7 @@ Route::get('/welcome', function () {
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth','admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
