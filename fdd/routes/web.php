@@ -17,10 +17,10 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/',function (){
-return Inertia::render('Home');
+Route::get('/', function () {
+    return Inertia::render('Home');
 })->name('home');
-Route::get('/admin',[AdminController::class,'index'])->middleware('auth');
+Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
 
 Route::get('/welcome', function () {
     return Inertia::render('Welcome', [
@@ -31,9 +31,10 @@ Route::get('/welcome', function () {
     ]);
 });
 
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth','admin'])->name('dashboard');
+})->middleware(['auth', 'admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -41,4 +42,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
