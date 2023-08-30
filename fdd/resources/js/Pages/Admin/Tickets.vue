@@ -1,16 +1,16 @@
 
 <script setup>
-import AppLayout from '../Layouts/AppLayout.vue'
+import AppLayout from '@/Layouts/AppLayout.vue'
 import { Head } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Tickets" />
 
   <AppLayout>
 
 <h1 class="text-black">
-    Dashboard
+   Tickets
 </h1>  
 </AppLayout>
 

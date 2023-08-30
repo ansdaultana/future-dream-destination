@@ -40,7 +40,7 @@ const submitForm = () => {
                     <div v-if="ticketReq.errors.email" class="text-red-500 mt-1">{{ ticketReq.errors.email }}</div>
                 </div>
                 <div class="w-1/2">
-                    <label class="block text-gray-700 font-medium mb-1" for="phone">Phone</label>
+                    <label class="block text-gray-700 font-medium mb-1" for="phone">Phone (without country code & initial 0)</label>
                     <input v-model="ticketReq.phone" id="phone" name="phone" type="tel" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
                     <div v-if="ticketReq.errors.phone" class="text-red-500 mt-1">{{ ticketReq.errors.phone }}</div>

@@ -40,6 +40,8 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/tickets', [DashboardController::class, 'tickets'])->name('dashboard.tickets');
     Route::get('/dashboard/visas', [DashboardController::class, 'visas'])->name('dashboard.visas');
+    Route::get('/dashboard/tickets-request', [TicketRequestController::class, 'ViewAllRequest'])->name('dashboard.view.tickets.requests');
+    Route::post('/dashboard/ticket-request-responded/{slug}', [TicketRequestController::class, 'RequestResponded']);
 
 });
 

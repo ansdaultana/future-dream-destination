@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\TicketRequest;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TicketRequestController extends Controller
 {
     public function request(Request $request)
     {
-        $attributes= $request->validate(
+        $attributes = $request->validate(
             [
                 'name' => 'required|string',
                 'email' => 'required|email',
@@ -20,22 +21,48 @@ class TicketRequestController extends Controller
                 'to' => 'required|string',
                 'booking_date' => 'required|date',
             ]
-            );
+        );
 
-            try {
-                TicketRequest::create([
-                    'name' => $attributes['name'],
-                    'email' => $attributes['email'],
-                    'phone' => $attributes['phone'],
-                    'no_of_adults' => $attributes['no_of_adults'],
-                    'no_of_children' => $attributes['no_of_children'],
-                    'from' => $attributes['from'],
-                    'to' => $attributes['to'],
-                    'booking_date' => $attributes['booking_date'],
-                    'responeded'=>false,
-                ]);
-            } catch (\Throwable $th) {
-                throw $th;
-            }
+        try {
+            TicketRequest::create([
+                'name' => $attributes['name'],
+                'email' => $attributes['email'],
+                'phone' => $attributes['phone'],
+                'no_of_adults' => $attributes['no_of_adults'],
+                'no_of_children' => $attributes['no_of_children'],
+                'from' => $attributes['from'],
+                'to' => $attributes['to'],
+                'booking_date' => $attributes['booking_date'],
+                'responded' => false,
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public function ViewAllRequest()
+    {
+        try {
+
+            $requests = TicketRequest::where('responded', 0)->get();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return Inertia::render('Admin/RequestsView', [
+            'requests' => $requests
+        ]);
+    }
+
+    public function RequestResponded(Request $request, $slug)
+    {
+
+        try {
+
+            $ticket = TicketRequest::where('id', $slug)->firstOrFail();
+            $ticket['responded'] = true;
+            $ticket->save();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+       
     }
 }

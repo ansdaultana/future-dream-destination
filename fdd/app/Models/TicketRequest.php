@@ -17,5 +17,5 @@ class TicketRequest extends Model
     'from',
     'to',
     'booking_date',
-    'responeded'];
+    'responded'];
 }

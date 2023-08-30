@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('from');
             $table->string('to');
             $table->date('booking_date');
-            $table->boolean('responeded')->default(false);
+            $table->boolean('responded')->default(false);
             $table->timestamps();
         });
     }
