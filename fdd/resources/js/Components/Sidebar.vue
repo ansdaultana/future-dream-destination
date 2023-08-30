@@ -4,7 +4,6 @@ import { usePage } from '@inertiajs/vue3';
 const page=usePage();
 const name=page.props.ziggy.location.split('/').pop();  
 
-console.log(name)
 </script>
 <template>
     <div class="w-1/6 h-screen    bg-slate-100 text-black">

@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\TicketRequestController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,14 +36,15 @@ Route::get('/welcome', function () {
 });
 
 
-Route::middleware('auth','admin')->group(function () {
-    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
-    Route::get('/dashboard/tickets',[DashboardController::class,'tickets'])->name('dashboard.tickets');
-    Route::get('/dashboard/visas',[DashboardController::class,'visas'])->name('dashboard.visas');
+Route::middleware('auth', 'admin')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/tickets', [DashboardController::class, 'tickets'])->name('dashboard.tickets');
+    Route::get('/dashboard/visas', [DashboardController::class, 'visas'])->name('dashboard.visas');
 
 });
 
-Route::get('/tickets',[TicketController::class,'index'])->name('tickets');
+Route::get('/tickets', [TicketController::class, 'index'])->name('tickets');
+Route::post('/ticket-request', [TicketRequestController::class, 'request'])->name('ticket.request');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

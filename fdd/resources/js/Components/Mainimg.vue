@@ -3,7 +3,7 @@ import imgforbox from '@/Components/imgforbox.vue'
 import { Link } from '@inertiajs/vue3';
 </script>
 <template>
-    <div class=" mt-10">
+    <div class=" ">
         <div class="">
             <img src="https://res.cloudinary.com/ddrivhxfq/image/upload/v1693297556/viy7jbjfujn52ewrfhc0.jpg" alt=""
                 class=" w-screen h-auto rounded-b-lg">

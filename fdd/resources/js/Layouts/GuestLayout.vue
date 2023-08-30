@@ -7,7 +7,7 @@ const props = defineProps({
 </script>
 <template>
   <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 ">
-    <div class="bg-slate-500 sm:mx-auto sm:w-full sm:max-w-sm p-10 rounded-xl">
+    <div class="bg-slate-500 sm:mx-auto sm:w-full sm:max-w-sm p-10 rounded-xl shadow-xl">
 
       <div class="sm:mx-auto sm:w-full sm:max-w-sm ">
         <img class="mx-auto h-40 w-auto animate-bounce" src="https://res.cloudinary.com/ddrivhxfq/image/upload/v1693297716/qjbklkn6j3spdlfoqpkx.png" alt="Your Company" />
