@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\TicketRequest;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-         \App\Models\User::factory()->create([
-             'name' => 'Ans',
-             'email' => 'ansdaultana.ad5@gmail.com',
-             'password'=>'12121212',
-             'isadmin'=>true
-         ]);
+        \App\Models\User::factory()->create([
+            'name' => 'Ans',
+            'email' => 'ansdaultana.ad5@gmail.com',
+            'password' => '12121212',
+            'isadmin' => true
+        ]);
+        
     }
 }

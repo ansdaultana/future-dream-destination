@@ -14,6 +14,19 @@ return [
     */
 
     'default' => env('FILESYSTEM_DISK', 'local'),
+    'local' => [
+        'driver' => 'local',
+        'root' => storage_path('app'),
+    ],
+    's3' => [
+        'driver' => 's3',
+        'key' => env('AWS_ACCESS_KEY_ID'),
+        'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        'region' => env('AWS_DEFAULT_REGION'),
+        'bucket' => env('AWS_BUCKET'),
+    ],
+    // Add more configurations as needed
+    
 
     /*
     |--------------------------------------------------------------------------

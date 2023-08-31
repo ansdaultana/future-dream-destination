@@ -42,7 +42,10 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('/dashboard/visas', [DashboardController::class, 'visas'])->name('dashboard.visas');
     Route::get('/dashboard/tickets-request', [TicketRequestController::class, 'ViewAllRequest'])->name('dashboard.view.tickets.requests');
     Route::post('/dashboard/ticket-request-responded/{slug}', [TicketRequestController::class, 'RequestResponded']);
+    Route::get('/dashboard/new-ticket',[TicketController::class,'newPage']);
+    Route::post('/dashboard/add/new-ticket',[TicketController::class,'new']);
 
+    
 });
 
 Route::get('/tickets', [TicketController::class, 'index'])->name('tickets');

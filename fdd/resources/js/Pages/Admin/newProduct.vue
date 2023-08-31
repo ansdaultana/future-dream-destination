@@ -2,11 +2,7 @@
 
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import AppLayout from '../Layouts/AppLayout.vue'
-import { useRoute } from 'vue-router';
-import router from '../router/index.js'
-import store from '../store/index.js'
 const isloading = ref(false);
-const route = useRoute();
 const slug = ref('')
 const form = ref({})
 const deletedImages = ref([]);
