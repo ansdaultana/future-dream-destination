@@ -13,10 +13,7 @@ class DashboardController extends Controller
        return Inertia::render('Admin/Dashboard');
     }
     
-    public function tickets()
-    {
-       return Inertia::render('Admin/TicketsView');
-    }
+    
     public function Visas()
     {
        return Inertia::render('Admin/Visas');

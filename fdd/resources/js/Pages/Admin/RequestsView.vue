@@ -53,12 +53,7 @@ const done = (id) => {
             <div class=" ml-5 w-36 hidden md:block">
               Name
             </div>
-            <div class="w-16 hidden md:block">
-              Adults
-            </div>
-            <div class="w-16 hidden md:block">
-              Children
-            </div>
+        
             <div class="w-36 ">
               to
             </div>
@@ -84,10 +79,6 @@ const done = (id) => {
                 <img src="/johndoe.png" alt="" class="h-12 rounded-full">
               </div>
               <span v-text="request.name"></span>
-            </div>
-            <div class="w-16 ml-2 hidden md:block" v-text="request.no_of_adults">
-            </div>
-            <div class="w-16  ml-2 hidden md:block" v-text="request.no_of_children">
             </div>
             <div class="w-36 ml-2 " v-text="request.to">
             </div>

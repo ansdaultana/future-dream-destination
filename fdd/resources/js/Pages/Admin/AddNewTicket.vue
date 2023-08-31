@@ -81,6 +81,7 @@ const ImagesError = ref()
 
 const AddNewProduct = async () => {
 form.post('/dashboard/add/new-ticket');
+form.reset();
 }
 const EditProduct = async () => {
     try {
@@ -137,8 +138,14 @@ const SubmitRequest = () => {
                 Edit {{ Product.title }}
             </div>
             <div class=" ml-2 mr-2   rounded-xl ">
-                <div class="w-auto  flex  ">
-                    <div class="w-1/4 bg-slate-100 rounded-xl p-2 md:ml-28 ">
+                <div class="w-auto  flex  md:p-10 bg-slate-50 rounded-2xl shadow-lg">
+                    <div class="w-1/4 bg-slate-100 shadow-2xl rounded-xl p-2 md:ml-28 ">
+                        <div v-if="ImagesError" class="text-red-800 text-sm font-bold ml-2">
+                            {{ ImagesError.value }}
+                        </div>
+                        <p v-if="form.errors.images" class=" text-red-800 text-sm font-bold p-1 mt-1">
+                            {{ form.errors.images }}
+                        </p>
                         <div @dragover.prevent="onDragover" @dragleave.prevent="onDragleave" @drop.prevent="onDrop"
                             class="
                             bg-white
@@ -166,11 +173,9 @@ const SubmitRequest = () => {
                             </div>
                         </div>
 
-                        <div class="text-xs text-orange-400 mt-2 ml-2">You can upload only 1 picture</div>
-
-                        <div v-if="ImagesError" class="text-red-400 text-sm ml-2">
-                            {{ ImagesError.value }}
-                        </div>
+                        <div class="text-xs text-orange-400 mt-2 ml-2 flex items-center justify-center">You can upload only 1 picture</div>
+                       
+                        
                         <div v-if="imagesurlforview.length > 0" name="pics " class="">
 
                             <div class="mt-2 " v-for="(image, index) in imagesurlforview" :key="index">
@@ -204,13 +209,13 @@ const SubmitRequest = () => {
                     </div>
                     <div class="w-full md:w-1/2">
                         <div class="  w-full">
-                            <form @submit.prevent="SubmitRequest" class="bg-blue-200 p-4 h-96 md:px-14 md:py-8  rounded-md"
+                            <form @submit.prevent="SubmitRequest" class="bg-blue-200 p-4 shadow-lg md:px-14 md:py-14  rounded-md"
                                 enctype="multipart/form-data">
                                 <div class="mb-4">
                                     <label for="product-title" class="block text-gray-700 font-semibold mb-2">Ticket
                                         Title:</label>
                                     <input type="text" id="product-title" name="product_title" v-model="form.title"
-                                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-orange-500"
+                                        class="w-full px-4 py-2 bg-blue-50 border rounded-md focus:outline-none focus:border-orange-500"
                                         required>
 
                                     <p v-if="form.errors.title" class="text-xs text-red-400 mt-1">
@@ -223,7 +228,7 @@ const SubmitRequest = () => {
                                         class="block text-gray-700 font-semibold mb-2">Description:</label>
                                     <textarea id="product-description" name="product_description" rows="4"
                                         v-model="form.description"
-                                        class="w-full px-4 py-2 border rounded-md resize-none focus:outline-none focus:border-orange-500"
+                                        class="w-full px-4 py-2 border bg-blue-50 rounded-md resize-none focus:outline-none focus:border-orange-500"
                                         required></textarea>
                                     <p v-if="form.errors.description"
                                         class="text-xs text-red-400 mt-1">
@@ -233,7 +238,7 @@ const SubmitRequest = () => {
 
                          
                                 <button :disabled="isloading" :class="{ 'cursor-not-allowed': isloading, }" type="submit"
-                                    class="mt-2 bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600">Submit</button>
+                                    class="mt-2 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
                             </form>
                         </div>
 

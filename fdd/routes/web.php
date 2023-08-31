@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TicketRequestController;
@@ -22,9 +23,7 @@ use PHPUnit\Framework\Attributes\Ticket;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-})->name('home');
+Route::get('/', [HomeController::class,'index'])->name('home');
 
 Route::get('/welcome', function () {
     return Inertia::render('Welcome', [
@@ -38,12 +37,13 @@ Route::get('/welcome', function () {
 
 Route::middleware('auth', 'admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/tickets', [DashboardController::class, 'tickets'])->name('dashboard.tickets');
+    Route::get('/dashboard/tickets', [TicketController::class, 'view'])->name('dashboard.tickets');
     Route::get('/dashboard/visas', [DashboardController::class, 'visas'])->name('dashboard.visas');
     Route::get('/dashboard/tickets-request', [TicketRequestController::class, 'ViewAllRequest'])->name('dashboard.view.tickets.requests');
     Route::post('/dashboard/ticket-request-responded/{slug}', [TicketRequestController::class, 'RequestResponded']);
     Route::get('/dashboard/new-ticket',[TicketController::class,'newPage']);
     Route::post('/dashboard/add/new-ticket',[TicketController::class,'new']);
+    Route::post('/dashboard/delete-ticket/{slug}',[TicketController::class,'delete']);
 
     
 });

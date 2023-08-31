@@ -5,8 +5,6 @@ const ticketReq = useForm({
     name: '',
     email: '',
     phone: 0,
-    no_of_adults: 0,
-    no_of_children: 0,
     from: '',
     to: '',
     booking_date: null,
@@ -46,24 +44,7 @@ const submitForm = () => {
                     <div v-if="ticketReq.errors.phone" class="text-red-500 mt-1">{{ ticketReq.errors.phone }}</div>
                 </div>
             </div>
-            <div class="flex mt-4 space-x-4">
-                <div class="w-1/2">
-                    <label class="block text-gray-700 font-medium mb-1" for="no_of_adults">No. of Adults</label>
-                    <input v-model="ticketReq.no_of_adults" min="1" id="no_of_adults" name="no_of_adults" type="number"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                    <div v-if="ticketReq.errors.no_of_adults" class="text-red-500 mt-1">{{ ticketReq.errors.no_of_adults
-                    }}</div>
-                </div>
-                <div class="w-1/2">
-                    <label class="block text-gray-700 font-medium mb-1" for="no_of_children">No. of Children</label>
-                    <input v-model="ticketReq.no_of_children" min="0" id="no_of_children" name="no_of_children"
-                        type="number"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                    <div v-if="ticketReq.errors.no_of_children" class="text-red-500 mt-1">{{
-                        ticketReq.errors.no_of_children }}</div>
-                </div>
-            </div>
-
+        
             <div class="flex mt-4 space-x-4">
                 <div class="w-1/2">
                     <label class="block text-gray-700 font-medium mb-1" for="from">From</label>

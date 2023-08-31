@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->string('no_of_adults');
-            $table->string('no_of_children');
             $table->string('from');
             $table->string('to');
             $table->date('booking_date');
