@@ -60,6 +60,10 @@ const done = (id) => {
             <div class="w-36 ">
               from
             </div>
+            
+            <div class="w-36 ">
+              Service
+            </div>
             <div class="w-40 hidden lg:block">
               Date of Travel
             </div>
@@ -84,7 +88,8 @@ const done = (id) => {
             </div>
             <div class="w-36 ml-2 " v-text="request.from">
             </div>
-
+            <div class="w-36 ml-2 " v-text="request.selected_service">
+            </div>
             <div class="w-40 ml-2 md:pl-8 hidden lg:block">
               {{ request.booking_date }}
 

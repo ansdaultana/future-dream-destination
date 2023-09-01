@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('from');
             $table->string('to');
             $table->date('booking_date');
+            $table->string('selected_service')->default('Any Service');
             $table->boolean('responded')->default(false);
             $table->timestamps();
         });

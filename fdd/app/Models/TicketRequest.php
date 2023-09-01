@@ -17,5 +17,6 @@ class TicketRequest extends Model
     'from',
     'to',
     'booking_date',
-    'responded'];
+    'responded',
+    'selected_service'];
 }

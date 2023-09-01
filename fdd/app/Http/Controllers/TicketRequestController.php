@@ -18,6 +18,7 @@ class TicketRequestController extends Controller
                 'from' => 'required|string',
                 'to' => 'required|string',
                 'booking_date' => 'required|date',
+                'selected_service'=>'string|nullable',
             ]
         );
 
@@ -30,6 +31,7 @@ class TicketRequestController extends Controller
                 'to' => $attributes['to'],
                 'booking_date' => $attributes['booking_date'],
                 'responded' => false,
+                'selected_service'=>$attributes['selected_service'],
             ]);
         } catch (\Throwable $th) {
             throw $th;
