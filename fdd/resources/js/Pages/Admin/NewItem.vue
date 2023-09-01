@@ -1,13 +1,13 @@
 <script setup>
 
-import { computed, ref, onMounted, onUnmounted } from 'vue';
+import { computed, ref, onMounted, } from 'vue';
 import { router } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue'
-import { useForm, usePage } from '@inertiajs/vue3';
+import { usePage } from '@inertiajs/vue3';
 import { Head } from '@inertiajs/vue3';
 import { defineProps } from 'vue';
 const page = usePage();
-const { form ,ticket,visa,heading} = defineProps(['form','ticket','visa','heading']);
+const { form, ticket, visa, heading } = defineProps(['form', 'ticket', 'visa', 'heading']);
 
 onMounted(() => {
     if (page.props.edit === true) {
@@ -80,29 +80,44 @@ const validationErrors = ref()
 const ImagesError = ref()
 const isEditTicketPage = router.page.url.includes('/dashboard/edit-ticket/');
 const isNewTicketPage = router.page.url.includes('/dashboard/new-ticket');
+const isEditVisaPage = router.page.url.includes('/dashboard/edit-visa');
+const isNewVisaPage = router.page.url.includes('/dashboard/new-visa');
 
-const AddNewProduct = async () => {
-    form.post('/dashboard/add/new-ticket')
+
+const AddNewProduct = (url) => {
+    form.post(`/dashboard/add/${url}`)
     if (form.errors[0]) {
     }
     else {
         form.reset();
-        imagesurlforview.value={}
+        imagesurlforview.value = {}
     }
 }
-const EditProduct = async () => {
+const EditProduct = (url) => {
 
     if (form.images === null) {
     }
-    form.post(`/dashboard/edit-ticket/${page.props.item.slug}`)
+    form.post(`/dashboard/${url}/${page.props.item.slug}`)
 }
 const SubmitRequest = () => {
-    if (isEditTicketPage) {
-        EditProduct()
+    if (ticket && visa === false) {
+        if (isEditTicketPage) {
+            EditProduct('edit-ticket')
+        }
+        else if (isNewTicketPage) {
+            AddNewProduct('new-ticket')
+        }
     }
-    else if (isNewTicketPage) {
-        AddNewProduct()
+    if (ticket === false && visa === true) {
+        if (isEditVisaPage) {
+            EditProduct('edit-visa')
+        }
+        else if (isNewVisaPage) {
+            AddNewProduct('new-visa')
+        }
+
     }
+
 }
 
 </script>
@@ -110,13 +125,13 @@ const SubmitRequest = () => {
     <Head title="New" />
     <AppLayout>
         <div class="">
-            <div class="m-2  text-orange-500 font-bold " >
+            <div class="m-2  text-orange-500 font-bold ">
                 <span class="bg-slate-200 p-2 rounded-xl mt-2">
-                {{ heading }}
+                    {{ heading }}
 
                 </span>
             </div>
-         
+
             <div class=" ml-2 mr-2   rounded-xl ">
                 <div class="w-auto  flex  md:p-10 bg-slate-50 rounded-2xl shadow-lg">
                     <div class="sm:w-1/3 md:w-1/4 bg-slate-100 shadow-2xl rounded-xl  md:ml-28 ">
@@ -189,7 +204,7 @@ const SubmitRequest = () => {
                                 class="bg-blue-200 p-4 shadow-lg md:px-14 md:py-14  rounded-md"
                                 enctype="multipart/form-data">
                                 <div class="mb-4">
-                                    <label for="product-title" class="block text-gray-700 font-semibold mb-2">Ticket
+                                    <label for="product-title" class="block text-gray-700 font-semibold mb-2">
                                         Title:</label>
                                     <input type="text" id="product-title" name="product_title" v-model="form.title"
                                         class="w-full px-4 py-2 bg-blue-50 border rounded-md focus:outline-none focus:border-orange-500"
@@ -208,10 +223,33 @@ const SubmitRequest = () => {
                                         class="w-full px-4 py-2 border bg-blue-50 rounded-md resize-none focus:outline-none focus:border-orange-500"
                                         required></textarea>
                                     <p v-if="form.errors.description" class="text-xs text-red-400 mt-1">
-                                        {{ form.errors.description}}
+                                        {{ form.errors.description }}
                                     </p>
                                 </div>
-                               
+                                <div class=" flex justify-between" v-if="visa === true && ticket === false">
+                                    <div class="mb-4">
+                                        <label for="product-fee"
+                                            class="block text-gray-700 font-semibold mb-2">Price</label>
+                                        <input type="number" id="product-title" name="product_title" v-model="form.fee"
+                                            class="w-full px-4 py-2 bg-blue-50 border rounded-md focus:outline-none focus:border-orange-500"
+                                            required>
+
+                                        <p v-if="form.errors.title" class="text-xs text-red-400 mt-1">
+                                            {{ form.errors.fee }}
+                                        </p>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="product-discount"
+                                            class="block text-gray-700 font-semibold mb-2">Discount</label>
+                                        <input type="number" id="product-title" name="product_title" v-model="form.discount"
+                                            class="w-full px-4 py-2 bg-blue-50 border rounded-md focus:outline-none focus:border-orange-500"
+                                            required>
+
+                                        <p v-if="form.errors.discount" class="text-xs text-red-400 mt-1">
+                                            {{ form.errors.discount }}
+                                        </p>
+                                    </div>
+                                </div>
                                 <div class="">
                                     <label for="slidder" class="text-gray-700 text-sm font-semibold mb-2 mr-3">Add To the
                                         HomePage:</label>
@@ -221,8 +259,7 @@ const SubmitRequest = () => {
                                     </p>
                                 </div>
 
-                                <button :disabled="form.processing" 
-                                    type="submit"
+                                <button :disabled="form.processing" type="submit"
                                     class="mt-2 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
                             </form>
                         </div>

@@ -23,10 +23,10 @@ import { Link } from '@inertiajs/vue3';
                             </div>
                         </div>
                             <div class="flex justify-between md:ml-5 md:mr-5 p-1 text-gray-600">
-                              <div class=" items-center p-1">
+                              <Link href="/Categories/Visa" class=" items-center p-1">
                                 <imgforbox src="/visaa.jpg"/>
                                 <span class="ml-2 p-2 md:w-14 animate-pulse">Visas</span>
-                              </div>
+                              </Link>
                               <div class=" items-center p-1">
                                 <imgforbox src="/tour2.jpg"/>
                                 <span class="ml-2 p-2 md:w-14">Tours</span>

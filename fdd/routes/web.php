@@ -50,6 +50,10 @@ Route::middleware('auth', 'admin')->group(function () {
 
     Route::get('/dashboard/visas', [VisaController::class, 'index'])->name('dashboard.visas');
     Route::get('/dashboard/new-visa',[VisaController::class,'newVisaPage']);
+    Route::post('/dashboard/add/new-visa',[VisaController::class,'new']);
+    Route::post('/dashboard/delete-visa/{slug}',[VisaController::class,'delete']);
+    Route::get('/dashboard/edit-visa/{slug}',[VisaController::class,'editPage']);
+    Route::post('/dashboard/edit-visa/{slug}',[VisaController::class,'edit']);
 
     
 });

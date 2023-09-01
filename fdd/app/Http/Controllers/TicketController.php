@@ -49,19 +49,17 @@ class TicketController extends Controller
     public function view()
     {
         try {
-            $tickets = Ticket::all();
+            $items = Ticket::all();
 
-            foreach ($tickets as $ticket) {
+            foreach ($items as $ticket) {
                 $imageData = base64_encode(Storage::get($ticket->image_path));
                 $ticket->image_base64 = 'data:image/jpeg;base64,' . $imageData;
             }
         } catch (\Throwable $th) {
             throw $th;
         }
-        return Inertia::render('Admin/TicketsView', [
-            'items' => $tickets,
-            'ticket' => true,
-            'visa' => false
+        return Inertia::render('Admin/ViewTickets', [
+            'items' => $items,
         ]);
     }
 

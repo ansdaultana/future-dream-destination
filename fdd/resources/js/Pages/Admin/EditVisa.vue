@@ -10,6 +10,8 @@ const EditTicket = useForm({
     description: page.props.item.description,
     homepage: 0,
     oldimg:page.props.item.image_base64,
+    fee:page.props.item.fee,
+    discount:page.props.item.discount,
     images:null
 
 
@@ -25,7 +27,7 @@ onMounted(() => {
 
 <template>
 
-    <Head title="Edit Ticket"/>
-<NewItem :form="EditTicket" :ticket="true" :visa="false" :heading="'Editing Ticket'"/>
+    <Head title="Edit Visa"/>
+<NewItem :form="EditTicket" :ticket="false" :visa="true" :heading="'Editing Visa'"/>
 
 </template>

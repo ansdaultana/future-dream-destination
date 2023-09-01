@@ -22,11 +22,11 @@ import { Link } from '@inertiajs/vue3'
                         class="hover:scale-105 hover:bg-opacity-30 hover:bg-slate-50 rounded-full p-2 transition-transform duration-200 ease-in-out hover:cursor-pointer hover:text-blue-600">
                         Home
                     </Link>
-                    <div
+                    <Link href="/Categories/Visa"
                         class="hover:scale-105 hover:bg-opacity-30 hover:bg-slate-50 rounded-full p-2 transition-transform duration-200 ease-in-out hover:cursor-pointer hover:text-blue-600">
 
                         Visa & Services
-                    </div>
+                    </Link>
                     <div
                         class="hover:scale-105 hover:bg-opacity-30 hover:bg-slate-50 rounded-full p-2 transition-transform duration-200 ease-in-out hover:cursor-pointer hover:text-blue-600">
 

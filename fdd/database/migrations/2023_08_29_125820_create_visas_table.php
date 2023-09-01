@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('uae_visas', function (Blueprint $table) {
+        Schema::create('visas', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
             $table->string('title');
-            $table->string('discription');
+            $table->string('description');
+            $table->boolean('homepage')->default(false);
             $table->string('image_path');
-            $table->decimal('visa_fee');
-            $table->decimal('visa_discuint');
+            $table->integer('fee');
+            $table->integer('discount');
             $table->timestamps();
         });
     }
