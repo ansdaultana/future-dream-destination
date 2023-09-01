@@ -35,7 +35,7 @@ import { Link } from '@inertiajs/vue3';
                                 <imgforbox src="/booking2.jpg"/>
                                 <span class="p-2 md:w-14">Booking</span>
                               </div>
-                              <Link href="/tickets" class=" items-center p-1">
+                              <Link href="/Categories/Ticket" class=" items-center p-1">
                                 <imgforbox src="/ticket2.jpg"/>
                                 <span class=" p-2 md:w-14">Tickets</span>
                               </Link>

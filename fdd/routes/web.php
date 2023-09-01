@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -53,6 +54,7 @@ Route::middleware('auth', 'admin')->group(function () {
 
 Route::get('/tickets', [TicketController::class, 'index'])->name('tickets');
 Route::post('/ticket-request', [TicketRequestController::class, 'request'])->name('ticket.request');
+Route::get('/Categories/{slug}',[CategoryController::class,'index']);
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

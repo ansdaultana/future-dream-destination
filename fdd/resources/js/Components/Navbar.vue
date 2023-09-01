@@ -30,9 +30,9 @@ import { Link } from '@inertiajs/vue3'
                     <div
                         class="hover:scale-105 hover:bg-opacity-30 hover:bg-slate-50 rounded-full p-2 transition-transform duration-200 ease-in-out hover:cursor-pointer hover:text-blue-600">
 
-                        FDD Team
+                        Tourism
                     </div>
-                    <Link href="/tickets"
+                    <Link href="/Categories/Ticket"
                         class="hover:scale-105 hover:bg-opacity-30 hover:bg-slate-50 rounded-full p-2 transition-transform duration-200 ease-in-out hover:cursor-pointer hover:text-blue-600">
 
                         Plane Tickets

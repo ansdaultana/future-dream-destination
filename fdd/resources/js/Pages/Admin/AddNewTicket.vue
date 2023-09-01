@@ -97,10 +97,10 @@ const isNewTicketPage = router.page.url.includes('/dashboard/new-ticket');
 const AddNewProduct = async () => {
     form.post('/dashboard/add/new-ticket')
     if (form.errors[0]) {
-        console.log('errors')
     }
     else {
         form.reset();
+        imagesurlforview.value={}
     }
 }
 const EditProduct = async () => {
@@ -169,7 +169,7 @@ const SubmitRequest = () => {
                             1 picture</div>
 
 
-                        <div v-if="imagesurlforview" name="pics " class="mt-2 ">
+                        <div v-if="imagesurlforview.url" name="pics " class="mt-2 ">
 
                             <div
                                 class="image border-dashed border-2 h-14 md:h-20 hover:shadow-lg hover:bg-slate-200  transition-transform hover:scale-103 ease-in-out  duration-300  m-1 bg-slate-100  flex justify-between">
