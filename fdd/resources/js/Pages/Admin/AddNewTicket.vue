@@ -3,20 +3,28 @@
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { router } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue'
-import {useForm} from '@inertiajs/vue3';
-import {Head} from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 const isloading = ref(false);
-
+const page = usePage();
 const slug = ref('')
 const form = useForm({
-    title:'',
-    description:'',
-    images:{}
+    title: '',
+    description: '',
+    images: null,
+    oldimg:'',
 });
+onMounted(() => {
+    if (page.props.edit === true) {
+        form.title = page.props.item.title;
+        form.description = page.props.item.description;
+        imagesurlforview.value.url=page.props.item.image_base64;
+        form.oldimg=page.props.item.image_base64
+    }
+})
 const deletedImages = ref([]);
 
-const imagesurlforview = ref([
-]);
+const imagesurlforview = ref({});
 const acceptedImageTypes = ['image/jpeg', 'image/png',];
 const isDragging = ref(false);
 const SelectFiles = () => {
@@ -42,7 +50,7 @@ const onFileInput = async (event) => {
         const imageUrl = URL.createObjectURL(file);
         const title = file.name.split('.').slice(0, -1).join('.');
         form.images = file; // Replace existing images with the new one
-        imagesurlforview.value = [{ url: imageUrl, title: title }];
+        imagesurlforview.value = { url: imageUrl, title: title };
         ImagesError.value = ''; // Reset error message
     } else {
         ImagesError.value = 'Image is not in Jpeg or Png format.';
@@ -61,7 +69,7 @@ const onDrop = async (event) => {
         const imageUrl = URL.createObjectURL(file);
         const title = file.name.split('.').slice(0, -1).join('.');
         form.images = file; // Replace existing images with the new one
-        imagesurlforview.value = [{ url: imageUrl, title: title }];
+        imagesurlforview.value = { url: imageUrl, title: title };
         ImagesError.value = ''; // Reset error message
     } else {
         ImagesError.value = 'Image is not in Jpeg or Png format.';
@@ -78,57 +86,39 @@ const deleteUploaded = () => {
 
 const validationErrors = ref()
 const ImagesError = ref()
+const isEditTicketPage = router.page.url.includes('/dashboard/edit-ticket/');
+const isNewTicketPage = router.page.url.includes('/dashboard/new-ticket');
 
 const AddNewProduct = async () => {
-form.post('/dashboard/add/new-ticket');
-form.reset();
+    form.post('/dashboard/add/new-ticket');
+    if (form.errors.length===0) {
+    form.reset();
+        
+    }
 }
 const EditProduct = async () => {
-    try {
-        const formData = {
-            title: form.value.title,
-            description: form.value.description,
-            price: form.value.price,
-            slidder: form.value.slidder,
-            recommended: form.value.recommended,
-            category: form.value.category,
-            quantity: form.value.quantity,
-            photos: form.images.value,
-            deletedImages: deletedImages.value,
-            slug: Product.value.slug
-        };
-
-
-        isloading.value = true;
-        const response = await store.dispatch('editProduct', formData);
-        isloading.value = false
-        resetform();
-        router.push({ name: 'app.products' });
-
-    } catch (error) {
-        if (error.response && error.response.data && error.response.data.errors) {
-            validationErrors.value = error.response.data.errors;
-            isloading.value = false
-
-            console.log(validationErrors.value);
-        } else {
-            alert('An error occurred while adding the product.');
-        }
+  
+    if (form.images===null) {
     }
-
+    form.post(`/dashboard/edit-ticket/${page.props.item.slug}`);
+    if (form.errors.length===0) {
+    form.reset();
+    imagesurlforview.value={}
+        
+    }
 }
 const SubmitRequest = () => {
-    if (router === 'editproduct') {
+    if (isEditTicketPage) {
         EditProduct()
     }
-    else if (router.page.component === 'Admin/AddNewTicket') {
+    else if (isNewTicketPage) {
         AddNewProduct()
     }
 }
 
 </script>
 <template>
-    <Head title="Add new ticket"/>
+    <Head title="Add new ticket" />
     <AppLayout>
         <div class="">
             <div class="m-2 text-orange-500 flex" v-if="!slug">
@@ -139,7 +129,7 @@ const SubmitRequest = () => {
             </div>
             <div class=" ml-2 mr-2   rounded-xl ">
                 <div class="w-auto  flex  md:p-10 bg-slate-50 rounded-2xl shadow-lg">
-                    <div class="w-1/4 bg-slate-100 shadow-2xl rounded-xl p-2 md:ml-28 ">
+                    <div class="sm:w-1/3 md:w-1/4 bg-slate-100 shadow-2xl rounded-xl  md:ml-28 ">
                         <div v-if="ImagesError" class="text-red-800 text-sm font-bold ml-2">
                             {{ ImagesError.value }}
                         </div>
@@ -164,7 +154,7 @@ const SubmitRequest = () => {
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                                     </svg>
-                                    <p class="inline-block text-xs">Drag & Drop Your photo.or
+                                    <p class=" text-xs">Drag & Drop Your photo.or
                                         <span @click="SelectFiles" class="text-orange-500 cursor-pointer">Browse</span>
                                     </p>
                                     <input @change="onFileInput" id='fileInput' type="file" class="hidden" ref="FileInput"
@@ -173,23 +163,19 @@ const SubmitRequest = () => {
                             </div>
                         </div>
 
-                        <div class="text-xs text-orange-400 mt-2 ml-2 flex items-center justify-center">You can upload only 1 picture</div>
-                       
-                        
-                        <div v-if="imagesurlforview.length > 0" name="pics " class="">
+                        <div class="text-xs text-orange-400 mt-2 ml-2 flex items-center justify-center">You can upload only
+                            1 picture</div>
 
-                            <div class="mt-2 " v-for="(image, index) in imagesurlforview" :key="index">
+
+                        <div v-if="imagesurlforview" name="pics " class="mt-2 ">
 
                                 <div
                                     class="image border-dashed border-2 h-14 md:h-20 hover:shadow-lg hover:bg-slate-200  transition-transform hover:scale-103 ease-in-out  duration-300  m-1 bg-slate-100  flex justify-between">
                                     <div class="flex">
                                         <div class="md:w-24 w-14  m-2  items-center flex">
                                             <img class="md:h-16
-                                        " :src="image.url ? image.url : image.image_url">
+                                        " :src="imagesurlforview.url ? imagesurlforview.url : imagesurlforview.image_url">
 
-                                        </div>
-                                        <div class="m-2 md:block hidden" v-if="router.name === 'newproduct'">
-                                            {{ image.title }}
                                         </div>
 
                                     </div>
@@ -205,11 +191,11 @@ const SubmitRequest = () => {
                                 </div>
 
                             </div>
-                        </div>
                     </div>
                     <div class="w-full md:w-1/2">
                         <div class="  w-full">
-                            <form @submit.prevent="SubmitRequest" class="bg-blue-200 p-4 shadow-lg md:px-14 md:py-14  rounded-md"
+                            <form @submit.prevent="SubmitRequest"
+                                class="bg-blue-200 p-4 shadow-lg md:px-14 md:py-14  rounded-md"
                                 enctype="multipart/form-data">
                                 <div class="mb-4">
                                     <label for="product-title" class="block text-gray-700 font-semibold mb-2">Ticket
@@ -230,14 +216,13 @@ const SubmitRequest = () => {
                                         v-model="form.description"
                                         class="w-full px-4 py-2 border bg-blue-50 rounded-md resize-none focus:outline-none focus:border-orange-500"
                                         required></textarea>
-                                    <p v-if="form.errors.description"
-                                        class="text-xs text-red-400 mt-1">
-                                        {{ form.errors.title}}
+                                    <p v-if="form.errors.description" class="text-xs text-red-400 mt-1">
+                                        {{ form.errors.title }}
                                     </p>
                                 </div>
 
-                         
-                                <button :disabled="isloading" :class="{ 'cursor-not-allowed': isloading, }" type="submit"
+
+                                <button :disabled="form.processing" :class="{ 'cursor-not-allowed': isloading, }" type="submit"
                                     class="mt-2 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
                             </form>
                         </div>

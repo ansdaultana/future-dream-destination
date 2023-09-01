@@ -72,7 +72,7 @@ const done = (id) => {
         <ul role="list"
           class="divide-y-8 divide-white md:ml-5 m-2 md:mr-5 overflow-y-scroll overflow-x-hidden h-[500px] scrollbar  text-slate-800 font-serif">
           <li v-for="request in requests" :key="request.ID"
-            class="cursor-pointer hover:shadow-md rounded-xl bg-slate-100 flex justify-between gap-x-6 py-5 shadow-xl shadow-blue-100 ">
+            class="cursor-pointer hover:shadow-md items-center rounded-xl bg-slate-100 flex justify-between gap-x-6 py-5 shadow-xl shadow-blue-100 ">
 
             <div class="flex ml-5 w-36 hidden md:block ">
               <div>

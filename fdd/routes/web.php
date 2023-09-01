@@ -44,6 +44,9 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('/dashboard/new-ticket',[TicketController::class,'newPage']);
     Route::post('/dashboard/add/new-ticket',[TicketController::class,'new']);
     Route::post('/dashboard/delete-ticket/{slug}',[TicketController::class,'delete']);
+    Route::get('/dashboard/edit-ticket/{slug}',[TicketController::class,'editPage']);
+    Route::post('/dashboard/edit-ticket/{slug}',[TicketController::class,'edit']);
+
 
     
 });

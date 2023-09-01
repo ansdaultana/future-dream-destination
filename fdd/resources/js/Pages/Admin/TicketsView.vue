@@ -40,9 +40,14 @@ const deleteItem=()=>
     router.post(`/dashboard/delete-ticket/${slugToBeDeleted.value}`);
     ToggleModal();
 }
+const editItem=(slug)=>
+{
+  router.get(`/dashboard/edit-ticket/${slug}`);
+
+}
 const goToNewProduct=()=>
 {
-    router.get('/dashboard/new-item');
+    router.get('/dashboard/new-ticket');
 }
 const formatUpdatedAt = (date) => {
   const updatedDate = new Date(date);
@@ -126,7 +131,7 @@ const formatUpdatedAt = (date) => {
                         <div class="ml-5">
                             <img :src="item.image_base64" alt="" class="h-20 rounded-lg">
                           </div>
-                        <div class="flex ml-5 w-36 hidden md:block ">
+                        <div class="flex ml-5 w-36 ">
                             <span v-text="item.title"></span>
                         </div>
                        
@@ -136,7 +141,7 @@ const formatUpdatedAt = (date) => {
 
                         </div>
                         <div class="w-20 h-10 text-black hover:text-black justify-between  flex mr-8 ml-2 gap-3">
-                            <div @click.prevent="EditProduct(item.slug)"
+                            <div @click.prevent="editItem(item.slug)"
                               class="bg-[#20D0FF] p-2 rounded-lg transition-transform hover:scale-103 ease-in-out duration-300 cursor-pointer">
                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-5 h-5 text-white">
