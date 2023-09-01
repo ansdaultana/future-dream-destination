@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('discription');
             $table->string('image_path');
             $table->decimal('visa_fee');
+            $table->decimal('visa_discuint');
             $table->timestamps();
         });
     }

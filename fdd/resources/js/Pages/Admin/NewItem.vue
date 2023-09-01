@@ -5,26 +5,13 @@ import { router } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue'
 import { useForm, usePage } from '@inertiajs/vue3';
 import { Head } from '@inertiajs/vue3';
-const isloading = ref(false);
+import { defineProps } from 'vue';
 const page = usePage();
-const slug = ref('')
-const form = useForm({
-    title: '',
-    description: '',
-    images: null,
-    homepage: false,
-    oldimg: '',
-});
+const { form ,ticket,visa,heading} = defineProps(['form','ticket','visa','heading']);
+
 onMounted(() => {
     if (page.props.edit === true) {
-        form.title = page.props.item.title;
-        form.description = page.props.item.description;
         imagesurlforview.value.url = page.props.item.image_base64;
-        form.oldimg = page.props.item.image_base64
-        if (page.props.item.homepage === 1) {
-            form.homepage = true;
-
-        }
     }
 })
 const deletedImages = ref([]);
@@ -120,15 +107,16 @@ const SubmitRequest = () => {
 
 </script>
 <template>
-    <Head title="Add new ticket" />
+    <Head title="New" />
     <AppLayout>
         <div class="">
-            <div class="m-2 text-orange-500 flex" v-if="!slug">
-                Add New Ticket
+            <div class="m-2  text-orange-500 font-bold " >
+                <span class="bg-slate-200 p-2 rounded-xl mt-2">
+                {{ heading }}
+
+                </span>
             </div>
-            <div class="m-2 text-orange-500 flex" v-if="slug">
-                Edit {{ Product.title }}
-            </div>
+         
             <div class=" ml-2 mr-2   rounded-xl ">
                 <div class="w-auto  flex  md:p-10 bg-slate-50 rounded-2xl shadow-lg">
                     <div class="sm:w-1/3 md:w-1/4 bg-slate-100 shadow-2xl rounded-xl  md:ml-28 ">
@@ -220,9 +208,10 @@ const SubmitRequest = () => {
                                         class="w-full px-4 py-2 border bg-blue-50 rounded-md resize-none focus:outline-none focus:border-orange-500"
                                         required></textarea>
                                     <p v-if="form.errors.description" class="text-xs text-red-400 mt-1">
-                                        {{ form.errors.title }}
+                                        {{ form.errors.description}}
                                     </p>
                                 </div>
+                               
                                 <div class="">
                                     <label for="slidder" class="text-gray-700 text-sm font-semibold mb-2 mr-3">Add To the
                                         HomePage:</label>
@@ -232,7 +221,7 @@ const SubmitRequest = () => {
                                     </p>
                                 </div>
 
-                                <button :disabled="form.processing" :class="{ 'cursor-not-allowed': isloading, }"
+                                <button :disabled="form.processing" 
                                     type="submit"
                                     class="mt-2 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
                             </form>

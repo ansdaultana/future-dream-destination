@@ -15,9 +15,9 @@ class TicketController extends Controller
         return Inertia::render('TicketsHome');
     }
 
-    public function newPage()
+    public function newTicketPage()
     {
-        return Inertia::render('Admin/AddNewTicket');
+        return Inertia::render('Admin/NewTicket');
     }
 
     public function new(Request $request)
@@ -27,7 +27,7 @@ class TicketController extends Controller
             'title' => 'required|string',
             'description' => 'required|string',
             'images' => 'image|required',
-            'homepage'=>'boolean'
+            'homepage' => 'boolean',
         ]);
 
         try {
@@ -39,7 +39,7 @@ class TicketController extends Controller
                 'title' => $attributes['title'],
                 'description' => $attributes['description'],
                 'image_path' => $path,
-                'homepage'=>$attributes['homepage']
+                'homepage' => $attributes['homepage']
             ]);
         } catch (\Throwable $th) {
             throw $th;
@@ -59,7 +59,9 @@ class TicketController extends Controller
             throw $th;
         }
         return Inertia::render('Admin/TicketsView', [
-            'tickets' => $tickets
+            'items' => $tickets,
+            'ticket' => true,
+            'visa' => false
         ]);
     }
 
@@ -91,10 +93,10 @@ class TicketController extends Controller
             throw $th;
         }
         return Inertia::render(
-            'Admin/AddNewTicket',
+            'Admin/EditTicket',
             [
                 'item' => $ticket,
-                'edit' => true
+                'edit' => true,
             ]
         );
 
@@ -107,7 +109,7 @@ class TicketController extends Controller
             'description' => 'required|string',
             'images' => 'image|nullable',
             'oldimg' => 'string',
-            'homepage'=>'boolean'
+            'homepage' => 'boolean'
         ]);
 
         try {
@@ -116,7 +118,7 @@ class TicketController extends Controller
             if ($ticket) {
                 $ticket->title = $attributes['title'];
                 $ticket->description = $attributes['description'];
-                $ticket->homepage=$attributes['homepage'];
+                $ticket->homepage = $attributes['homepage'];
 
                 if (request('oldimg')) {
 

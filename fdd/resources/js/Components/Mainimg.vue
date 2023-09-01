@@ -7,8 +7,8 @@ import { Link } from '@inertiajs/vue3';
         <div class="">
             <img src="https://res.cloudinary.com/ddrivhxfq/image/upload/v1693297556/viy7jbjfujn52ewrfhc0.jpg" alt=""
                 class=" w-screen h-auto rounded-b-lg">
-            <div class=" flex items-center justify-center md:-mt-24" >
-                <div class="m-2 w-full md:w-1/2 md:h-44 bg-slate-50 rounded-xl shadow-lg shadow-blue-300 hover:cursor-pointer animate-bounce">
+            <div class=" flex items-center justify-center md:-mt-24 " >
+                <div class="m-2 w-full md:w-1/2 md:h-44 bg-slate-50 rounded-xl  shadow-lg shadow-blue-300 hover:cursor-pointer animate-bounce">
                     <div class="">
                         <div class="text-lg font-bold p-2 md:p-2">
                             <div class="flex">

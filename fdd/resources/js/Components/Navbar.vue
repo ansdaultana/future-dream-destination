@@ -3,8 +3,8 @@ import { Link } from '@inertiajs/vue3'
 </script>
 
 <template>
-    <div class="font-sans  z-10 text-white  text-lg font-bold bg-slate-200 " ref="navbar">
-        <div class="fixed top-0 right-0 left-0 bg-gradient-to-r from-[#DFB161] from-24% via-sky-400 via-50% to-[#3D9ECF] to-70%     shadow-md h-auto rounded-b-lg w-full p-2 ">
+    <div class="font-sans  z-50 text-white  text-lg font-bold bg-slate-200 " ref="navbar">
+        <div class=" top-0 right-0 left-0 bg-gradient-to-r from-[#DFB161] from-24% via-sky-400 via-50% to-[#3D9ECF] to-70%     shadow-md h-auto rounded-b-lg w-full p-2 ">
             <div class="flex justify-between text-sm md:text-lg lg:text-xl">
                 <div class="flex">
                     <div class="">

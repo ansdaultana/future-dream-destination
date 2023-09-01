@@ -8,7 +8,7 @@ import { Head } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3';
 import CustomPagination from '@/Components/CustomPagination.vue'
 const page = usePage();
-const items = computed(() => page.props.tickets);
+const items = computed(() => page.props.items);
 const openmodal = ref(false);
 const slugToBeDeleted=ref('')
 const form = useForm({
@@ -45,9 +45,14 @@ const editItem=(slug)=>
   router.get(`/dashboard/edit-ticket/${slug}`);
 
 }
-const goToNewProduct=()=>
+const goToNewTicket=()=>
 {
     router.get('/dashboard/new-ticket');
+}
+
+const goToNewVisa=()=>
+{
+    router.get('/dashboard/new-visa');
 }
 const formatUpdatedAt = (date) => {
   const updatedDate = new Date(date);
@@ -78,14 +83,17 @@ const formatUpdatedAt = (date) => {
 
             <div class=" flex justify-between ">
                 <div class="flex">
-                    <div class="text-black text-lg mt-2  ml-5 hover:text-black ">
+                    <div class="text-black text-lg mt-2  ml-5 hover:text-black " v-if="page.props.ticket===true">
                         Tickets
                     </div>
+                    <div class="text-black text-lg mt-2  ml-5 hover:text-black " v-if="page.props.visa===true">
+                      Visas
+                  </div>
 
                 </div>
 
 
-            <div @click="goToNewProduct" class="
+            <div @click="goToNewVisa" v-if="page.props.visa===true" class="
     cursor-pointer
       rotate-svg
       transition-transform hover:-translate-x-5
@@ -98,10 +106,32 @@ const formatUpdatedAt = (date) => {
 
                 </div>
 
-                <button @click.prevent="goToNewProduct" class="hidden md:block">
-                    New Ticket
+                <button @click.prevent="goToNewVisa" class="hidden md:block" >
+                   <span >New Visa</span> 
+
                 </button>
+          
+
             </div>
+            <div @click="goToNewTicket" v-if="page.props.ticket===true" class="
+            cursor-pointer
+              rotate-svg
+              transition-transform hover:-translate-x-5
+              md:w-36 w-14 bg-orange-500 hover:bg-orange-600 p-5 hover:scale-103 text-white px-2 rounded-lg py-1 m-2 ml-2 flex ">
+                        <div>
+                            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class=" now-rotate-svg   transition-transform w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+        
+                        </div>
+        
+                  
+                        <button @click.prevent="goToNewTicket" class="hidden md:block" >
+                          <span >New Ticket</span> 
+                       </button>
+        
+                    </div>
         </div>
 
             <div name="panel" class=" mr-1 absolute  rounded-md border-slate-300 w-full h-full   border-t ">
@@ -113,7 +143,10 @@ const formatUpdatedAt = (date) => {
                         <div class=" ml-5 w-36  ">
                             Title
                         </div>
-                    
+                        <div class=" ml-5 w-36  " v-if="page.props.visa===true">
+                          Price
+                      </div>
+                        
                      
                         <div class="w-40 hidden lg:block">
                             Date of Creation
@@ -135,7 +168,9 @@ const formatUpdatedAt = (date) => {
                             <span v-text="item.title"></span>
                         </div>
                        
-                       
+                        <div class=" ml-5 w-36  " v-if="page.props.visa===true">
+                          <span v-text="item.visa_fee"></span>
+                      </div>
                         <div class="w-40 ml-2 md:pl-8 hidden lg:block">
                             {{ formatUpdatedAt(item.created_at) }}
 
