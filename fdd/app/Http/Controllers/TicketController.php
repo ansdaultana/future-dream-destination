@@ -26,9 +26,9 @@ class TicketController extends Controller
         $attributes = request()->validate([
             'title' => 'required|string',
             'description' => 'required|string',
-            'images' => 'image|required'
+            'images' => 'image|required',
+            'homepage'=>'boolean'
         ]);
-
 
         try {
             if ($attributes['images']) {
@@ -38,7 +38,8 @@ class TicketController extends Controller
             Ticket::create([
                 'title' => $attributes['title'],
                 'description' => $attributes['description'],
-                'image_path' => $path
+                'image_path' => $path,
+                'homepage'=>$attributes['homepage']
             ]);
         } catch (\Throwable $th) {
             throw $th;
@@ -105,7 +106,8 @@ class TicketController extends Controller
             'title' => 'required|string',
             'description' => 'required|string',
             'images' => 'image|nullable',
-            'oldimg' => 'string'
+            'oldimg' => 'string',
+            'homepage'=>'boolean'
         ]);
 
         try {
@@ -114,6 +116,7 @@ class TicketController extends Controller
             if ($ticket) {
                 $ticket->title = $attributes['title'];
                 $ticket->description = $attributes['description'];
+                $ticket->homepage=$attributes['homepage'];
 
                 if (request('oldimg')) {
 

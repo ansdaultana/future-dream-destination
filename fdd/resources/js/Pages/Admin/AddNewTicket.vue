@@ -12,6 +12,7 @@ const form = useForm({
     title: '',
     description: '',
     images: null,
+    homepage:false,
     oldimg:'',
 });
 onMounted(() => {
@@ -20,6 +21,10 @@ onMounted(() => {
         form.description = page.props.item.description;
         imagesurlforview.value.url=page.props.item.image_base64;
         form.oldimg=page.props.item.image_base64
+        if (page.props.item.homepage===1) {
+        form.homepage=true;
+            
+        }
     }
 })
 const deletedImages = ref([]);
@@ -220,7 +225,15 @@ const SubmitRequest = () => {
                                         {{ form.errors.title }}
                                     </p>
                                 </div>
-
+                                <div class="">
+                                    <label for="slidder" class="text-gray-700 text-sm font-semibold mb-2 mr-3">Add To the
+                                        HomePage:</label>
+                                    <input type="checkbox" v-model="form.homepage">
+                                    <p v-if="form.errors.homepage "
+                                        class="text-xs text-red-400 mt-1">
+                                        {{ form.errors.homepage }}
+                                    </p>
+                                </div>
 
                                 <button :disabled="form.processing" :class="{ 'cursor-not-allowed': isloading, }" type="submit"
                                     class="mt-2 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
