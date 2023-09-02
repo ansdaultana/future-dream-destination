@@ -28,6 +28,6 @@ onMounted(() => {
 <template>
 
     <Head title="Edit Visa"/>
-<NewItem :form="EditTicket" :ticket="false" :visa="true" :heading="'Editing Visa'"/>
+<NewItem :form="EditTicket" :ticket="false" :visa="true" :tour="false" :heading="'Editing Visa'"/>
 
 </template>

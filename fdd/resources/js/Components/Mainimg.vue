@@ -27,10 +27,10 @@ import { Link } from '@inertiajs/vue3';
                                 <imgforbox src="/visaa.jpg"/>
                                 <span class="ml-2 p-2 md:w-14 animate-pulse">Visas</span>
                               </Link>
-                              <div class=" items-center p-1">
+                              <Link href="/Categories/Tourism" class=" items-center p-1">
                                 <imgforbox src="/tour2.jpg"/>
                                 <span class="ml-2 p-2 md:w-14">Tours</span>
-                              </div>
+                              </Link>
                               <div class=" items-center p-1">
                                 <imgforbox src="/booking2.jpg"/>
                                 <span class="p-2 md:w-14">Booking</span>

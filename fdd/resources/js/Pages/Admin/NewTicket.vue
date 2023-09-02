@@ -13,5 +13,5 @@ const Ticketform = useForm({
 <template>
     <Head title="Add ticket"/>
 
-<NewItem :form="Ticketform" :ticket="true" :visa="false" :heading="'Add new Ticket'" />
+<NewItem :form="Ticketform" :ticket="true" :visa="false" :tour="false" :heading="'Add new Ticket'" />
 </template>

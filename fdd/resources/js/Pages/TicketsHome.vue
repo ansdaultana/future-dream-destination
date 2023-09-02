@@ -7,7 +7,7 @@ import TicketForm from '@/Components/TicketForm.vue';
 <template>
     <Head title="Tickets"/>
     <Navbar/>
-    <div class=" mt-14 bg-slate-100 ">
+    <div class="  bg-slate-100 ">
         <div class="text-black flex justify-center items-center text-2xl font-bold pt-10">
             Explore Beyond Boundaries: Your Future Dream Destination Awaits You
 

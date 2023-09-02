@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Ticket;
+use App\Models\Tourism;
 use App\Models\Visa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,24 +16,31 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         try {
-            $category=Category::all();
+            $category = Category::all();
             $tickets = Ticket::where('homepage', true)
-            ->with('category') // Assuming you have a relationship named 'category' in your Ticket model
-            ->orderByDesc('created_at') // Order by created_at in descending order
-            ->get();
-    
-        // Retrieve visas where homepage is true and attach the category relationship
-        $visas = Visa::where('homepage', true)
-            ->with('category') // Assuming you have a relationship named 'category' in your Visa model
-            ->orderByDesc('created_at') // Order by created_at in descending order
-            ->get();
-    
-        // Combine the results into a single collection
-        $results = $tickets->concat($visas);
-        foreach ($results as $result) {
-            $imageData = base64_encode(Storage::get($result->image_path));
-            $result->image_base64 = 'data:image/jpeg;base64,' . $imageData;
-        }
+                ->orderByDesc('created_at')
+                ->get();
+
+            $visas = Visa::where('homepage', true)
+                ->orderByDesc('created_at')
+                ->get();
+            $tours = Tourism::where('homepage', true)
+                ->orderByDesc('created_at')
+                ->get();
+            $tempresults = $tickets->concat($visas);
+            $results = $tempresults->concat($tours);
+            foreach ($results as $result) {
+                $imageData = base64_encode(Storage::get($result->image_path));
+                $result->image_base64 = 'data:image/jpeg;base64,' . $imageData;
+                if ($result instanceof Ticket) {
+                    $result->category = 'Ticket';
+                } elseif ($result instanceof Visa) {
+                    $result->category = 'Visa';
+                }elseif ($result instanceof Tourism) {
+                    $result->category = 'Tourism';
+                }
+            }
+
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -40,7 +48,7 @@ class HomeController extends Controller
             'Home',
             [
                 'homepageitems' => $results,
-                'category'=>$category,
+                'category' => $category,
 
             ]
         );

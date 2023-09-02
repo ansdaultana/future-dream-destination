@@ -82,6 +82,8 @@ const name = page.props.ziggy.location.split('/').pop();
                     </div>
                 </div>
             </div>
+            <LinkforSidebar :href="route('dashboard.tour')" url="tour" name="Tours" />
+
             <div>
 
                 <div id="container"

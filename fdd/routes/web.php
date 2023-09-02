@@ -8,7 +8,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TicketRequestController;
+use App\Http\Controllers\TourismController;
 use App\Http\Controllers\VisaController;
+use App\Models\Tourism;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -55,6 +57,12 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('/dashboard/edit-visa/{slug}',[VisaController::class,'editPage']);
     Route::post('/dashboard/edit-visa/{slug}',[VisaController::class,'edit']);
 
+    Route::get('/dashboard/tour', [TourismController::class, 'index'])->name('dashboard.tour');
+    Route::get('/dashboard/new-tour',[TourismController::class,'newTourPage']);
+    Route::post('/dashboard/add/new-tour',[TourismController::class,'new']);
+    Route::post('/dashboard/delete-tour/{slug}',[TourismController::class,'delete']);
+    Route::get('/dashboard/edit-tour/{slug}',[TourismController::class,'editPage']);
+    Route::post('/dashboard/edit-tour/{slug}',[TourismController::class,'edit']);
     
 });
 

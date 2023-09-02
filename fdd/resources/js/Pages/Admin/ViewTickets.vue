@@ -6,5 +6,5 @@ import ViewItems from './ViewItems.vue';
 <template>
     <Head title="Tickets"  />
 
-    <ViewItems :ticket="true" :visa="false" :editUrl="'edit-ticket'" :deleteUrl="'delete-ticket'"/>
+    <ViewItems :ticket="true" :visa="false" :tour="false" :editUrl="'edit-ticket'" :deleteUrl="'delete-ticket'"/>
 </template>

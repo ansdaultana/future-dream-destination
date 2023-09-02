@@ -7,7 +7,7 @@ import { usePage } from '@inertiajs/vue3';
 import { Head } from '@inertiajs/vue3';
 import { defineProps } from 'vue';
 const page = usePage();
-const { form, ticket, visa, heading } = defineProps(['form', 'ticket', 'visa', 'heading']);
+const { form, ticket, visa,tour, heading } = defineProps(['form', 'ticket', 'visa','tour', 'heading']);
 
 onMounted(() => {
     if (page.props.edit === true) {
@@ -82,6 +82,8 @@ const isEditTicketPage = router.page.url.includes('/dashboard/edit-ticket/');
 const isNewTicketPage = router.page.url.includes('/dashboard/new-ticket');
 const isEditVisaPage = router.page.url.includes('/dashboard/edit-visa');
 const isNewVisaPage = router.page.url.includes('/dashboard/new-visa');
+const isEditTourPage = router.page.url.includes('/dashboard/edit-tour');
+const isNewTourPage = router.page.url.includes('/dashboard/new-tour');
 
 
 const AddNewProduct = (url) => {
@@ -100,7 +102,7 @@ const EditProduct = (url) => {
     form.post(`/dashboard/${url}/${page.props.item.slug}`)
 }
 const SubmitRequest = () => {
-    if (ticket && visa === false) {
+    if (ticket===true && visa === false &&tour===false) {
         if (isEditTicketPage) {
             EditProduct('edit-ticket')
         }
@@ -108,7 +110,7 @@ const SubmitRequest = () => {
             AddNewProduct('new-ticket')
         }
     }
-    if (ticket === false && visa === true) {
+    if (ticket === false && visa === true &&tour===false) {
         if (isEditVisaPage) {
             EditProduct('edit-visa')
         }
@@ -117,7 +119,14 @@ const SubmitRequest = () => {
         }
 
     }
-
+    if (ticket === false && visa === false &&tour===true) {
+        if (isEditTourPage) {
+            EditProduct('edit-tour')
+        }
+        else if (isNewTourPage) {
+            AddNewProduct('new-tour')
+        }
+    }
 }
 
 </script>
@@ -226,7 +235,7 @@ const SubmitRequest = () => {
                                         {{ form.errors.description }}
                                     </p>
                                 </div>
-                                <div class=" flex justify-between" v-if="visa === true && ticket === false">
+                                <div class=" flex justify-between" v-if="(visa === true || tour==true)&& ticket === false">
                                     <div class="mb-4">
                                         <label for="product-fee"
                                             class="block text-gray-700 font-semibold mb-2">Price</label>

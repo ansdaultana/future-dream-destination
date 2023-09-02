@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,6 +12,13 @@ return new class extends Migration
     {
         Schema::create('tourisms', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
+            $table->string('title');
+            $table->string('description');
+            $table->boolean('homepage')->default(false);
+            $table->string('image_path');
+            $table->integer('fee');
+            $table->integer('discount');
             $table->timestamps();
         });
     }

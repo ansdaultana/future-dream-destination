@@ -1,5 +1,5 @@
 <template>
-    <footer class=" bg-gradient-to-r mt-8 from-blue-400 from-10% via-sky-400 via-30% to-blue-500 to-90% text-white  py-8">
+    <footer class=" bg-gradient-to-r mt-20 from-blue-400 from-10% via-sky-400 via-30% to-blue-500 to-90% text-white  py-8">
         <div class="container mx-auto flex flex-col  justify-between items-center space-y-6">
             <div class="flex flex-col items-center justify-center pt-5">
                 <h2 class="text-2xl font-semibold">Future Dream Destination</h2>

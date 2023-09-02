@@ -15,6 +15,6 @@ const Visaform = useForm({
 <template>
     <Head title="Add Visa"/>
 
-<NewItem :form="Visaform" :ticket="false" :visa="true" :heading="'Add new Visa'"/>
+<NewItem :form="Visaform" :ticket="false" :visa="true" :tour="false" :heading="'Add new Visa'"/>
 
 </template>

@@ -5,18 +5,20 @@ import { onMounted } from 'vue';
 import NewItem from './NewItem.vue';
 
 const page = usePage();
-const EditTicket = useForm({
+const EditTour = useForm({
     title: page.props.item.title,
     description: page.props.item.description,
     homepage: 0,
-    oldimg:page.props.item.image_base64,
-    images:null
+    oldimg: page.props.item.image_base64,
+    fee: page.props.item.fee,
+    discount: page.props.item.discount,
+    images: null
 
 
 });
 onMounted(() => {
     if (page.props.item.homepage === 1) {
-        EditTicket.homepage = true;
+        EditTour.homepage = true;
 
     }
 })
@@ -24,8 +26,6 @@ onMounted(() => {
 </script>
 
 <template>
-
-    <Head title="Edit Ticket"/>
-<NewItem :form="EditTicket" :ticket="true" :visa="false" :tour="false" :heading="'Editing Ticket'"/>
-
+    <Head title="Edit Tour" />
+    <NewItem :form="EditTour" :ticket="false" :visa="false" :tour="true" :heading="'Editing Tour'" />
 </template>
