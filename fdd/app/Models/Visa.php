@@ -26,4 +26,9 @@ class Visa extends Model
         'fee',
         'discount'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

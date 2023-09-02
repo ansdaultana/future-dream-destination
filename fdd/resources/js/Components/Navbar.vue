@@ -39,8 +39,8 @@ import { Link } from '@inertiajs/vue3'
                     </Link>
                 </div>
                 <div
-                    class="hover:bg-slate-50 hover:opacity-30 border-white border md:px-4 md:py-2 p-1 rounded-full hover:scale-105 transition-transform duration-200 ease-in-out hover:cursor-pointer hover:text-blue-600">
-                    Contact Us
+                    class="hover:bg-slate-50 hover:opacity-30 border-white border md:px-4 md:py-2 flex justify-center items-center rounded-full hover:scale-105 transition-transform duration-200 ease-in-out hover:cursor-pointer hover:text-blue-600">
+                   <span class="p-1">Contact Us</span> 
                 </div>
             </div>
         </div>
