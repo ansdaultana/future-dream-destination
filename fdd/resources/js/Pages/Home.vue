@@ -15,7 +15,7 @@ import Categories from '@/Components/Categories.vue';
     <Mainimg />
     <Categories />
 
-    <div class="ml-20 mr-20">
+    <div class="md:ml-20 md:mr-20">
         <Services />
 
     </div>

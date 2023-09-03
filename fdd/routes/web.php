@@ -67,6 +67,7 @@ Route::middleware('auth', 'admin')->group(function () {
 });
 
 Route::get('/tickets', [TicketController::class, 'index'])->name('tickets');
+Route::get('/visas', [VisaController::class, 'home'])->name('visa');
 Route::post('/ticket-request', [TicketRequestController::class, 'request'])->name('ticket.request');
 Route::get('/Categories/{slug}',[CategoryController::class,'index']);
 Route::middleware('auth')->group(function () {

@@ -10,6 +10,10 @@ use Inertia\Inertia;
 class VisaController extends Controller
 {
     //
+    public function home()
+    {
+        return Inertia::render('VisasHome');
+    }
     public function index(Request $request)
     {
         $items = Visa::all();
@@ -59,7 +63,7 @@ class VisaController extends Controller
 
     }
 
-    
+
 
     public function delete(Request $request, $slug)
     {

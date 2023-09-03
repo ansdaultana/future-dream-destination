@@ -18,7 +18,7 @@ const gotoCategory=(name)=>{
     <div class="flex items-center justify-center m-5">
         <h1 class="font-bold font-sans text-sm md:text-xl  ">we provide services for your future dream destination</h1>
     </div>
-    <div class="flex flex-col md:flex-row items-center justify-center gap-x-10">
+    <div class="flex flex-col md:flex-row items-center justify-center  gap-x-10">
 
         <div v-for="category in Categories  " class=" justify-center items-center space-x-3 md:space-x-10 mt-8 mb-10">
             <div @click.prevent="gotoCategory(category.name)">
