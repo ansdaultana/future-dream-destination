@@ -38,9 +38,11 @@ class TourismController extends Controller
             'description' => 'required|string',
             'images' => 'image|required',
             'homepage' => 'boolean',
-            'fee' => 'numeric',
+            'inside_country_fee' => 'numeric|required',
+            'outside_country_fee' => 'numeric',
             'discount' => 'numeric'
         ]);
+        dd($attributes);
         try {
             if ($attributes['images']) {
                 $path = $attributes['images']->store('uploads');
@@ -51,7 +53,8 @@ class TourismController extends Controller
                 'description' => $attributes['description'],
                 'image_path' => $path,
                 'homepage' => $attributes['homepage'],
-                'fee' => $attributes['fee'],
+                'inside_country_fee' => $attributes['inside_country_fee'],
+                'outside_country_fee' => $attributes['outside_country_fee'],
                 'discount' => $attributes['discount']
             ]);
         } catch (\Throwable $th) {
@@ -107,7 +110,8 @@ class TourismController extends Controller
             'images' => 'image|nullable',
             'oldimg' => 'string',
             'homepage' => 'boolean',
-            'fee' => 'numeric',
+            'inside_country_fee' => 'numeric|required',
+            'outside_country_fee' => 'numeric',
             'discount' => 'numeric'
         ]);
         try {
@@ -116,7 +120,8 @@ class TourismController extends Controller
                 $visa->title = $attributes['title'];
                 $visa->description = $attributes['description'];
                 $visa->homepage = $attributes['homepage'];
-                $visa->fee = $attributes['fee'];
+                $visa->inside_country_fee= $attributes['inside_country_fee'];
+                $visa->outside_country_fee= $attributes['outside_country_fee'];
                 $visa->discount = $attributes['discount'];
 
                 if (request('oldimg')) {

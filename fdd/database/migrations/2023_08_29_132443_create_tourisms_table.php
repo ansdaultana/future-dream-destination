@@ -17,7 +17,8 @@ return new class extends Migration {
             $table->string('description');
             $table->boolean('homepage')->default(false);
             $table->string('image_path');
-            $table->integer('fee');
+            $table->integer('inside_country_fee');
+            $table->integer('outside_country_fee');
             $table->integer('discount');
             $table->timestamps();
         });

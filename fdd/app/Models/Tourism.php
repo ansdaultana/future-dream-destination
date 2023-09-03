@@ -10,7 +10,7 @@ class Tourism extends Model
 {
     use HasFactory;
     use Sluggable;
-    protected $fillable=['image_path','title','description','fee','discount'];
+    protected $fillable=['image_path','title','description','inside_country_fee','outside_country_fee', 'discount'];
 
     public function sluggable(): array
     {

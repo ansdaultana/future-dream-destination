@@ -42,7 +42,7 @@ class CategoryController extends Controller
                 foreach ($Items as $Item) {
                     $imageData = base64_encode(Storage::get($Item->image_path));
                     $Item->image_base64 = 'data:image/jpeg;base64,' . $imageData;
-                        $Item->category = 'Visa';
+                        $Item->category = 'Tourism';
                 }
     
             }

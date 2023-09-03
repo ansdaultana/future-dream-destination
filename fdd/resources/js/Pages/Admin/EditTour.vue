@@ -11,6 +11,8 @@ const EditTour = useForm({
     homepage: 0,
     oldimg: page.props.item.image_base64,
     fee: page.props.item.fee,
+    inside_country_fee:page.props.item.inside_country_fee,
+    outside_country_fee:page.props.item.outside_country_fee,
     discount: page.props.item.discount,
     images: null
 

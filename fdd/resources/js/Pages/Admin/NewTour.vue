@@ -7,7 +7,8 @@ const Tourform = useForm({
     images: null,
     homepage: false,
     oldimg: '',
-    fee:0,
+    inside_country_fee:0,
+    outside_country_fee:0,
     discount:0
 });
 

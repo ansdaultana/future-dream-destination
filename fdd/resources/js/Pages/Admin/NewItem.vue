@@ -235,7 +235,7 @@ const SubmitRequest = () => {
                                         {{ form.errors.description }}
                                     </p>
                                 </div>
-                                <div class=" flex justify-between" v-if="(visa === true || tour==true)&& ticket === false">
+                                <div class=" flex justify-between" v-if="visa === true && tour==false&& ticket === false">
                                     <div class="mb-4">
                                         <label for="product-fee"
                                             class="block text-gray-700 font-semibold mb-2">Price</label>
@@ -243,7 +243,7 @@ const SubmitRequest = () => {
                                             class="w-full px-4 py-2 bg-blue-50 border rounded-md focus:outline-none focus:border-orange-500"
                                             required>
 
-                                        <p v-if="form.errors.title" class="text-xs text-red-400 mt-1">
+                                        <p v-if="form.errors.fee" class="text-xs text-red-400 mt-1">
                                             {{ form.errors.fee }}
                                         </p>
                                     </div>
@@ -253,6 +253,41 @@ const SubmitRequest = () => {
                                         <input type="number" id="product-title" name="product_title" v-model="form.discount"
                                             class="w-full px-4 py-2 bg-blue-50 border rounded-md focus:outline-none focus:border-orange-500"
                                             required>
+
+                                        <p v-if="form.errors.discount" class="text-xs text-red-400 mt-1">
+                                            {{ form.errors.discount }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class=" flex justify-between text-sm gap-2" v-if="visa === false && tour==true&& ticket === false">
+                                    <div class="mb-4">
+                                        <label for="product-fee"
+                                            class="block text-gray-700 font-semibold mb-2">In country Price:</label>
+                                        <input type="number" id="product-title" name="product_title" v-model="form.inside_country_fee"
+                                            class="w-full px-4 py-2 bg-blue-50 border rounded-md focus:outline-none focus:border-orange-500"
+                                            required>
+
+                                        <p v-if="form.errors.inside_country_fee" class="text-xs text-red-400 mt-1">
+                                            {{ form.errors.inside_country_fee }}
+                                        </p>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="product-fee"
+                                            class="block text-gray-700 font-semibold mb-2">Outside country Price:</label>
+                                        <input type="number" id="product-title" name="product_title" v-model="form.outside_country_fee"
+                                            class="w-full px-4 py-2 bg-blue-50 border rounded-md focus:outline-none focus:border-orange-500"
+                                            >
+
+                                        <p v-if="form.errors.outside_country_fee" class="text-xs text-red-400 mt-1">
+                                            {{ form.errors.outside_country_fee }}
+                                        </p>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="product-discount"
+                                            class="block text-gray-700 font-semibold mb-2">Discount</label>
+                                        <input type="number" id="product-title" name="product_title" v-model="form.discount"
+                                            class="w-full px-4 py-2 bg-blue-50 border rounded-md focus:outline-none focus:border-orange-500"
+                                            >
 
                                         <p v-if="form.errors.discount" class="text-xs text-red-400 mt-1">
                                             {{ form.errors.discount }}
