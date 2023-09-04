@@ -10,9 +10,24 @@ use Inertia\Inertia;
 class VisaController extends Controller
 {
     //
-    public function home()
+    public function home(Request $request, $slug)
     {
-        return Inertia::render('VisasHome');
+        try {
+
+            $visa = Visa::where('slug', $slug)->firstOrFail();
+            $imageData = base64_encode(Storage::get($visa->image_path));
+            $visa->image_base64 = 'data:image/jpeg;base64,' . $imageData;
+            
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return Inertia::render(
+            'VisaPage',
+            [
+                'item' => $visa,
+                'about'=>'Visa'
+            ]
+        );
     }
     public function index(Request $request)
     {

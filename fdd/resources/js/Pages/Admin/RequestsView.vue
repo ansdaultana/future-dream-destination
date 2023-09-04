@@ -5,31 +5,49 @@ import { computed, ref, } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3';
 import {Head} from '@inertiajs/vue3';
-import CustomPagination from '@/Components/CustomPagination.vue'
+import { defineProps } from 'vue';
+const viewmessage=ref('')
+const openmodal=ref(false)
+const request=ref({})
+const slugToBeDeleted=ref('')
 const page = usePage();
 const requests = computed(() => page.props.requests);
 const form = useForm({
   id: null
 });
+const {  ticket, visa,tour, heading,url, } = defineProps([ 'ticket', 'visa','tour', 'heading','url']);
+const removeInitialZeroAndOpenWhatsApp = (originalPhoneNumber) => {
+  const phoneNumber = originalPhoneNumber.replace(/^0/, '');
+  getWhatsAppLink(phoneNumber);
+};
+
 const getWhatsAppLink = (phoneNumber) => {
   const message = encodeURIComponent('Hello, I am From Future Dream Destination!');
   const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
   window.open(whatsappLink, '_blank');
 };
 
-const info = ref({
-  currentPage: 1,
-  perPage: 10,
-  search: ''
-});
-
-const totalItems = ref(10);
-const totalPages = computed(() => Math.ceil(requests.value.length / info.value.perPage));
 
 const done = (id) => {
-  form.post(`/dashboard/ticket-request-responded/${id}`);
+  form.post(`/dashboard/${url}/${id}`);
 }
 
+const ToggleModal=()=>
+{
+console.log('in toggle');
+  openmodal.value=!openmodal.value;
+}
+const ViewModal = (temprequest) => {
+  ToggleModal()
+
+  if (ticket===false) {
+  request.value=temprequest;
+
+console.log(request.value)
+    
+  }
+  slugToBeDeleted.value = temprequest.slug
+}
 </script>
 <template>
   <AppLayout>
@@ -54,20 +72,20 @@ const done = (id) => {
               Name
             </div>
         
-            <div class="w-36 ">
+            <div class="w-36 " v-if="ticket===true">
               to
             </div>
-            <div class="w-36 ">
+            <div class="w-36 " v-if="ticket===true">
               from
             </div>
             
-            <div class="w-36 ">
+            <div class="w-36 " v-if="ticket===true">
               Service
             </div>
-            <div class="w-40 hidden lg:block">
+            <div class="w-40 hidden lg:block" v-if="ticket===true">
               Date of Travel
             </div>
-            <div class="w-20">
+            <div class="w-40">
               Actions
             </div>
           </div>
@@ -84,18 +102,24 @@ const done = (id) => {
               </div>
               <span v-text="request.name"></span>
             </div>
-            <div class="w-36 ml-2 " v-text="request.to">
+           
+            <div class="w-36 ml-2 " v-text="request.to" v-if="ticket===true">
             </div>
-            <div class="w-36 ml-2 " v-text="request.from">
+            <div class="w-36 ml-2 " v-text="request.from" v-if="ticket===true">
             </div>
-            <div class="w-36 ml-2 " v-text="request.selected_service">
+            <div class="w-36 ml-2 " v-text="request.selected_service" v-if="ticket===true">
             </div>
-            <div class="w-40 ml-2 md:pl-8 hidden lg:block">
+            <div class="w-40 ml-2 md:pl-8 hidden lg:block" v-if="ticket===true">
               {{ request.booking_date }}
 
             </div>
-            <div class="w-20 h-10 text-black hover:text-black justify-between  flex mr-8 ml-2 gap-3">
-              <div @click.prevent="getWhatsAppLink(request.phone)"
+            <div class="w-40 h-10 text-black hover:text-black justify-between  flex mr-8 ml-2 gap-3">
+              <div @click.prevent="ViewModal(request)" v-if="tour===false" class="bg-white px-6 py-2 rounded-xl transition-transform hover:scale-105">
+                <span>
+                 View 
+                </span>
+              </div>
+              <div @click.prevent="removeInitialZeroAndOpenWhatsApp(request.phone)"
                 class=" rounded-lg p-1 bg-[#06CA00] transition-transform hover:scale-105 ease-in-out duration-300 cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="fill-white h-8">
                   <path
@@ -119,6 +143,65 @@ const done = (id) => {
 
 
     </div>
+
+    <div v-if="openmodal" id="popup-modal" tabindex="-1" class="
+    transition-opacity duration-800 
+    z-50  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+  :class="{ 'opacity-100 pointer-events-auto': openmodal, 'opacity-0 pointer-events-none': !openmodal }">
+  <div class="relative w-full max-w-md max-h-full">
+    <div class="relative bg-slate-300 rounded-lg shadow ">
+      <button @click="ToggleModal" type="button"
+        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+        data-modal-hide="popup-modal">
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+        </svg>
+        <span class="sr-only">Close modal</span>
+      </button>
+      <div class="p-6 text-center">
+        <svg div class="mx-auto mb-4  w-12 h-12 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+        </svg>
+        
+        <h3 class="mb-5 text-lg font-normal text-gray-700 " v-if="ticket===true"> Are You sure you want to delete this?</h3>
+        <div class="w-80 m-4 h-40 overflow-y-scroll">
+          <span class="w-full" v-text="request.message">
+
+          </span>
+        </div>
+        <div v-if="ticket===true">
+          <button @click.prevent="deleteItem()" data-modal-hide="popup-modal" type="button"
+          class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+          Yes, I'm sure
+        </button>
+        <button @click="ToggleModal" data-modal-hide="popup-modal" type="button"
+          class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No,
+          cancel</button>
+        </div>
+        <div v-if="visa===true ||tour===true" class="flex items-center justify-center gap-x-5">
+          <div @click.prevent="removeInitialZeroAndOpenWhatsApp(request.phone)"
+          class=" rounded-lg px-5 py-2 bg-[#06CA00] transition-transform hover:scale-105 ease-in-out duration-300 cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="fill-white h-8">
+            <path
+              d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+          </svg>
+
+        </div>
+        <div @click="done(request.id)"
+          class="bg-blue-400 px-5 py-3 hover:bg-blue-500 rounded-lg transition-transform hover:scale-105 ease-in-out duration-300 cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6 text-white">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+        </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
   </AppLayout>

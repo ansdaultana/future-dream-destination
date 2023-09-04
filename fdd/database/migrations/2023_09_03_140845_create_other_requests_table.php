@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('visas', function (Blueprint $table) {
+        Schema::create('other_requests', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('message');
+            $table->string('phone');
             $table->string('slug');
-            $table->string('title');
-            $table->text('description');
-            $table->boolean('homepage')->default(false);
-            $table->string('image_path');
-            $table->integer('fee');
-            $table->integer('discount');
+            $table->string('about');
+            $table->boolean('responded')->default(false);
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('uae_visas');
+        Schema::dropIfExists('other_requests');
     }
 };

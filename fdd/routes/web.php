@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OtherRequestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TicketRequestController;
@@ -39,11 +40,13 @@ Route::get('/welcome', function () {
 });
 
 
-Route::middleware('auth', 'admin')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/tickets', [TicketController::class, 'view'])->name('dashboard.tickets');
     Route::get('/dashboard/tickets-request', [TicketRequestController::class, 'ViewAllRequest'])->name('dashboard.view.tickets.requests');
+    Route::get('/dashboard/visa-request', [OtherRequestController::class, 'ViewVisaRequest'])->name('dashboard.view.visa.requests');
     Route::post('/dashboard/ticket-request-responded/{slug}', [TicketRequestController::class, 'RequestResponded']);
+    Route::post('/dashboard/visa-request-responded/{slug}', [OtherRequestController::class, 'RequestResponded']);
     Route::get('/dashboard/new-ticket',[TicketController::class,'newTicketPage']);
     Route::post('/dashboard/add/new-ticket',[TicketController::class,'new']);
     Route::post('/dashboard/delete-ticket/{slug}',[TicketController::class,'delete']);
@@ -67,8 +70,10 @@ Route::middleware('auth', 'admin')->group(function () {
 });
 
 Route::get('/tickets', [TicketController::class, 'index'])->name('tickets');
-Route::get('/visas', [VisaController::class, 'home'])->name('visa');
+Route::get('/visas/{slug}', [VisaController::class, 'home'])->name('visa');
+Route::get('/tourism/{slug}', [TourismController::class, 'home'])->name('tourism');
 Route::post('/ticket-request', [TicketRequestController::class, 'request'])->name('ticket.request');
+Route::post('/submit-user-request/{slug}', [OtherRequestController::class, 'message'])->name('other.request');
 Route::get('/Categories/{slug}',[CategoryController::class,'index']);
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

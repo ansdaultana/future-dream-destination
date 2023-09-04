@@ -45,7 +45,7 @@ class TicketRequestController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
-        return Inertia::render('Admin/RequestsView', [
+        return Inertia::render('Admin/TicketRequest', [
             'requests' => $requests
         ]);
     }

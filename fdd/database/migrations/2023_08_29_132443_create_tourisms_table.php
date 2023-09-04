@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('slug');
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->boolean('homepage')->default(false);
             $table->string('image_path');
             $table->integer('inside_country_fee');

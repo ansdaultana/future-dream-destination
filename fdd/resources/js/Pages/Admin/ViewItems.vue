@@ -157,8 +157,14 @@ const formatUpdatedAt = (date) => {
             <div class=" ml-5 w-36  ">
               Title
             </div>
-            <div class=" ml-5 w-36 hidden md:block " v-if="(visa === true || tour=== true) && ticket===false">
+            <div class=" ml-5 w-36 hidden md:block " v-if="visa === true && tour=== false && ticket===false">
               Fee
+            </div>
+            <div class=" ml-5 w-36 hidden md:block text-sm " v-if="visa === false && tour=== true && ticket===false">
+              Inside Country Fee
+            </div>
+            <div class=" ml-5 w-36 hidden md:block  text-sm" v-if="visa === false && tour=== true && ticket===false">
+              Outside Country Fee
             </div>
             <div class=" ml-5 w-36  hidden md:block" v-if="(visa === true || tour=== true) && ticket===false">
               Discount
@@ -185,8 +191,13 @@ const formatUpdatedAt = (date) => {
               <span v-text="item.title"></span>
             </div>
 
-            <div class=" ml-5 w-36 hidden md:block " v-if="(visa === true || tour=== true) && ticket===false">
+            <div class=" ml-5 w-36 hidden md:block " v-if="visa === true && tour=== false && ticket===false">
               <span v-text="item.fee"></span>
+            </div>
+            <div class=" ml-5 w-36 hidden md:block " v-if="visa === false && tour=== true && ticket===false">
+              <span v-text="item.inside_country_fee"></span>
+            </div><div class=" ml-5 w-36 hidden md:block " v-if="visa === false && tour=== tue && ticket===false">
+              <span v-text="item.outside_country_fee"></span>
             </div>
             <div class=" ml-5 w-36 hidden md:block " v-if="(visa === true || tour=== true) && ticket===false">
               <span v-text="item.discount"></span>

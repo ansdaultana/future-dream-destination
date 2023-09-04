@@ -10,6 +10,10 @@ use Inertia\Inertia;
 class TourismController extends Controller
 {
     //
+    public function home()
+    {
+        return Inertia::render('VisaPage');
+    }
     public function index(Request $request)
     {
         $items = Tourism::all();
