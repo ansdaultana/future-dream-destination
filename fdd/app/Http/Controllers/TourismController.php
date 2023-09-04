@@ -10,9 +10,24 @@ use Inertia\Inertia;
 class TourismController extends Controller
 {
     //
-    public function home()
+    public function home(Request $request, $slug)
     {
-        return Inertia::render('VisaPage');
+        try {
+
+            $visa = Tourism::where('slug', $slug)->firstOrFail();
+            $imageData = base64_encode(Storage::get($visa->image_path));
+            $visa->image_base64 = 'data:image/jpeg;base64,' . $imageData;
+            
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return Inertia::render(
+            'DetailPageAndContact',
+            [
+                'item' => $visa,
+                'about'=>'Tourism'
+            ]
+        );
     }
     public function index(Request $request)
     {
@@ -46,7 +61,6 @@ class TourismController extends Controller
             'outside_country_fee' => 'numeric',
             'discount' => 'numeric'
         ]);
-        dd($attributes);
         try {
             if ($attributes['images']) {
                 $path = $attributes['images']->store('uploads');

@@ -26,21 +26,27 @@ const name = page.props.ziggy.location.split('/').pop();
             <div>
 
                 <div id="container"
-                    class="flex p-2 bg-slate-200 bg-opacity-80 tansition-transform hover:scale-105 duration-200 ease-in hover:bg-white rounded-md hover:fill-orange-500  mt-3">
-                    <div class="bg-orange py-1 w-1" :class="{ 'bg-orange-500': name === 'app.products' }">
-
-                    </div>
-                    <div class="pl-4 flex p-2">
-
-                        <svg :class="{ 'text-orange-500': name === 'Travel' }" class="animate-bounce fill-blue-400" xmlns="http://www.w3.org/2000/svg"
-                            height="1.25em" viewBox="0 0 640 512">
-                            <path
-                                d="M381 114.9L186.1 41.8c-16.7-6.2-35.2-5.3-51.1 2.7L89.1 67.4C78 73 77.2 88.5 87.6 95.2l146.9 94.5L136 240 77.8 214.1c-8.7-3.9-18.8-3.7-27.3 .6L18.3 230.8c-9.3 4.7-11.8 16.8-5 24.7l73.1 85.3c6.1 7.1 15 11.2 24.3 11.2H248.4c5 0 9.9-1.2 14.3-3.4L535.6 212.2c46.5-23.3 82.5-63.3 100.8-112C645.9 75 627.2 48 600.2 48H542.8c-20.2 0-40.2 4.8-58.2 14L381 114.9zM0 480c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32z" />
-                        </svg>
-                        <div class="lg:ml-8 ml-2 hidden md:block" :class="{ 'text-orange-500': name === 'app.products' }">
-                            Travel
+                    class="flex p-2 hover:cursor-pointer bg-slate-200 bg-opacity-80 tansition-transform hover:scale-105 duration-200 ease-in hover:bg-white rounded-md hover:fill-orange-500  mt-3">
+                    
+                    <div class="pl-4 flex p-2 justify-between">
+                        <div class="flex">
+                            <svg :class="{ 'text-orange-500': name === 'Travel' }" class="animate-bounce fill-blue-400"
+                                xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 640 512">
+                                <path
+                                    d="M381 114.9L186.1 41.8c-16.7-6.2-35.2-5.3-51.1 2.7L89.1 67.4C78 73 77.2 88.5 87.6 95.2l146.9 94.5L136 240 77.8 214.1c-8.7-3.9-18.8-3.7-27.3 .6L18.3 230.8c-9.3 4.7-11.8 16.8-5 24.7l73.1 85.3c6.1 7.1 15 11.2 24.3 11.2H248.4c5 0 9.9-1.2 14.3-3.4L535.6 212.2c46.5-23.3 82.5-63.3 100.8-112C645.9 75 627.2 48 600.2 48H542.8c-20.2 0-40.2 4.8-58.2 14L381 114.9zM0 480c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32z" />
+                            </svg>
+                            <div class="lg:ml-8 ml-2 hidden md:block"
+                                :class="{ 'text-orange-500': name === 'app.products' }">
+                                Travel
+                            </div>
                         </div>
 
+                        <div class="lg:ml-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6 mt-2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,7 +58,7 @@ const name = page.props.ziggy.location.split('/').pop();
             <div>
 
                 <div id="container"
-                    class="flex p-2 tansition-transform hover:scale-105 duration-200 ease-in  hover:bg-white rounded-md  mt-3">
+                    class="flex p-2 hover:cursor-pointer tansition-transform hover:scale-105 duration-200 ease-in  hover:bg-white rounded-md  mt-3">
                     <div class="bg-orange py-1 w-1" :class="{ 'bg-orange-500': name === 'app.users' }">
 
                     </div>
@@ -64,11 +70,18 @@ const name = page.props.ziggy.location.split('/').pop();
                         </svg>
 
 
-                        <div class="lg:ml-8 ml-2 hidden md:block" :class="{ 'text-orange-500': name === 'app.users' }">
+                        <div class="lg:ml-6 ml-2 hidden md:block" :class="{ 'text-orange-500': name === 'app.users' }">
                             Tourism
                         </div>
 
                     </div>
+                    <div class="lg:ml-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 mt-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </div>
+
                 </div>
             </div>
             <LinkforSidebar :href="route('dashboard.tour')" url="tour" name="Tours" />
@@ -76,14 +89,14 @@ const name = page.props.ziggy.location.split('/').pop();
             <div>
 
                 <div id="container"
-                    class="flex p-2 bg-slate-200 bg-opacity-80 tansition-transform hover:scale-105 duration-200 ease-in hover:bg-white rounded-md   mt-3">
+                    class="flex p-2 hover:cursor-pointer bg-slate-200 bg-opacity-80 tansition-transform hover:scale-105 duration-200 ease-in hover:bg-white rounded-md   mt-3">
                     <div class="bg-orange py-1 w-1" :class="{ 'bg-blue-500': name === 'app.products' }">
 
                     </div>
                     <div class="pl-4 flex p-2 ">
 
-                        <svg :class="{ 'text-orange-500': name === 'Travel' }" class="animate-bounce fill-blue-400" xmlns="http://www.w3.org/2000/svg"
-                            height="1.25em" viewBox="0 0 640 512">
+                        <svg :class="{ 'text-orange-500': name === 'Travel' }" class="animate-bounce fill-blue-400"
+                            xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 640 512">
                             <path
                                 d="M381 114.9L186.1 41.8c-16.7-6.2-35.2-5.3-51.1 2.7L89.1 67.4C78 73 77.2 88.5 87.6 95.2l146.9 94.5L136 240 77.8 214.1c-8.7-3.9-18.8-3.7-27.3 .6L18.3 230.8c-9.3 4.7-11.8 16.8-5 24.7l73.1 85.3c6.1 7.1 15 11.2 24.3 11.2H248.4c5 0 9.9-1.2 14.3-3.4L535.6 212.2c46.5-23.3 82.5-63.3 100.8-112C645.9 75 627.2 48 600.2 48H542.8c-20.2 0-40.2 4.8-58.2 14L381 114.9zM0 480c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32z" />
                         </svg>
@@ -92,15 +105,28 @@ const name = page.props.ziggy.location.split('/').pop();
                         </div>
 
                     </div>
+                    <div class="flex justify-end items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 mt-2 ml-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </div>
+
                 </div>
+
+
             </div>
             <LinkforSidebar :href="route('dashboard.view.tickets.requests')" url="tickets-request" name="Tickets" />
             <LinkforSidebar :href="route('dashboard.view.visa.requests')" url="visa-request" name="Visa" />
+            <LinkforSidebar :href="route('dashboard.view.tour.requests')" url="tour-request" name="Tour" />
 
 
 
         </div>
-</div></template>
-<style>#container:hover .bg-orange {
+    </div>
+</template>
+<style>
+#container:hover .bg-orange {
     background-color: rgb(12, 150, 255);
-}</style>
+}
+</style>

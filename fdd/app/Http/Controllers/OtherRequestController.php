@@ -52,6 +52,19 @@ class OtherRequestController extends Controller
             'requests' => $requests
         ]);
     }
+    public function ViewTourRequest(Request $request)
+    {
+        try {
+
+            $requests = OtherRequest::where('responded',0)->where('about','Tourism')
+            ->get();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return Inertia::render('Admin/TourRequest', [
+            'requests' => $requests
+        ]);
+    }
 
     public function RequestResponded(Request $request, $slug)
     {

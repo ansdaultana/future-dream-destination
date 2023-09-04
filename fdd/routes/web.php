@@ -45,8 +45,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard/tickets', [TicketController::class, 'view'])->name('dashboard.tickets');
     Route::get('/dashboard/tickets-request', [TicketRequestController::class, 'ViewAllRequest'])->name('dashboard.view.tickets.requests');
     Route::get('/dashboard/visa-request', [OtherRequestController::class, 'ViewVisaRequest'])->name('dashboard.view.visa.requests');
+    Route::get('/dashboard/tour-request', [OtherRequestController::class, 'ViewTourRequest'])->name('dashboard.view.tour.requests');
     Route::post('/dashboard/ticket-request-responded/{slug}', [TicketRequestController::class, 'RequestResponded']);
     Route::post('/dashboard/visa-request-responded/{slug}', [OtherRequestController::class, 'RequestResponded']);
+    Route::post('/dashboard/tour-request-responded/{slug}', [OtherRequestController::class, 'RequestResponded']);
     Route::get('/dashboard/new-ticket',[TicketController::class,'newTicketPage']);
     Route::post('/dashboard/add/new-ticket',[TicketController::class,'new']);
     Route::post('/dashboard/delete-ticket/{slug}',[TicketController::class,'delete']);

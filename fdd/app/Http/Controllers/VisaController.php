@@ -22,7 +22,7 @@ class VisaController extends Controller
             throw $th;
         }
         return Inertia::render(
-            'VisaPage',
+            'DetailPageAndContact',
             [
                 'item' => $visa,
                 'about'=>'Visa'

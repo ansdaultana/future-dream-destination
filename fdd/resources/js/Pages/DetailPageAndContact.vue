@@ -5,6 +5,7 @@ import ContactInfo from '@/Components/ContactInfo.vue';
 import { computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import {useForm} from '@inertiajs/vue3';
+import {Head} from '@inertiajs/vue3';
 const page = usePage();
 const item = computed(() => page.props.item)
 const about = computed(() => page.props.about)
@@ -24,6 +25,8 @@ form.post(`/submit-user-request/${slug}`);
 
 <template>
     <Navbar />
+    <Head title="FDD"  />
+
 
     <div class="h-full    bg-slate-200 m-4 md:m-10 rounded-xl">
 
@@ -64,10 +67,10 @@ form.post(`/submit-user-request/${slug}`);
             </div>
         </div>
 
-        <div class="flex items-center justify-center p-10">
+        <div class="flex text-sm md:text-lg items-center justify-center md:p-10 py-3">
             <div class=" bg-white h-full w-[90%] mt-4 shadow-lg  rounded-xl">
                 <div class="mt-5 ml-5">
-                    <span class="mt-5 text-lg text-blue-500">
+                    <span class="mt-5  text-blue-500">
                         If you have any Question, Regarding this service fill the form and we will contact you! </span>
                 </div>
                 <form @submit.prevent="submitForm(item.slug)" class="m-6 text-sm">
@@ -78,7 +81,7 @@ form.post(`/submit-user-request/${slug}`);
                         <div v-if="form.errors.name" class="text-red-500 mt-1">{{ form.errors.name }}</div>
         
                     </div>
-                    <div class="flex mt-4 space-x-4">
+                    <div class="flex-col md:flex mt-4 md:space-x-4 space-y-3">
                         <div class="w-1/2">
                             <label class="block text-gray-700 font-medium mb-1" for="email">Email</label>
                             <input v-model="form.email" id="email" name="email" type="email" required
@@ -86,7 +89,7 @@ form.post(`/submit-user-request/${slug}`);
                             <div v-if="form.errors.email" class="text-red-500 mt-1">{{ form.errors.email }}</div>
                         </div>
                         <div class="w-1/2">
-                            <label class="block text-gray-700 font-medium mb-1" for="phone">Phone (without country code & initial
+                            <label class="block text-gray-700 text-xs md:text-lg  font-medium mb-1" for="phone">Phone (without country code & initial
                                 0)</label>
                             <input v-model="form.phone" id="phone" name="phone" type="tel" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
