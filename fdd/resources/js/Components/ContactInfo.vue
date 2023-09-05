@@ -1,13 +1,16 @@
 <script setup>
-import { defineProps, defineEmits } from 'vue';
-const toggleContact = () => {
-    contact.value != contact.value
+import { defineProps} from 'vue';
+
+import { inject } from 'vue'
+const contact = inject('contact')
+const { nav } = defineProps(['nav']);
+const toggleContact=()=>{
+    contact.value=!contact.value;
 }
-const { nav, contact } = defineProps(['nav', 'contact']);
 </script>
 
 <template>
-    <div class="w-auto bg-blue-500 rounded-lg  hover:cursor-pointer hover:scale-105 transition-transform duration-200 ease-in "
+    <div class="w-auto bg-blue-500 rounded-lg shadow-lg  hover:cursor-pointer hover:scale-105 transition-transform duration-200 ease-in "
         :class="{ 'right-0 top-20 fixed h-auto': nav, 'h-full': !nav }">
         <div class="text-white p-2 md:p-4 gap-4">
             <div class="p-1 flex items-center justify-end" @click.prevent="toggleContact" v-if="nav">
