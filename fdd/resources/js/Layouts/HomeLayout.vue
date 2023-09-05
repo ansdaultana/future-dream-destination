@@ -3,7 +3,7 @@ import Navbar from '../Components/Navbar.vue';
 import Footer from '@/Components/Footer.vue'
 import { Head } from '@inertiajs/vue3';
 import { provide, ref } from 'vue';
-import Alert from '@/Components/Alert.vue';
+import Whatsapp from '@/Components/Whatsapp.vue';
 const contact = ref(false);
 const alert = ref(true);
 provide('contact', contact);
@@ -15,4 +15,5 @@ provide('alert',alert)
     </Navbar>
     <slot />
     <Footer />
+    <Whatsapp/>
 </template>

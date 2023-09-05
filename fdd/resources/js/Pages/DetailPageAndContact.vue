@@ -39,7 +39,7 @@ const submitForm = (slug) => {
                 <div class="flex">
 
                     <div class=" mt-4 ml-4 md:m-10">
-                        <img :src="item.image_base64" alt="" class="rounded-xl md:h-96 md:w-96 w-40 h-40  hover:scale-110 transition-transform ease-in-out duration-300">
+                        <img :src="item.image_base64" alt="" class="rounded-xl hover:cursor-pointer md:h-96 md:w-96 w-40 h-40  hover:scale-110 transition-transform ease-in-out duration-300">
                     </div>
                     <div>
                         <div class="mt-4  md:mt-10 md:mb-5 text-2xl font-bold">
@@ -82,7 +82,7 @@ const submitForm = (slug) => {
 
         <div class="flex item-center  justify-center gap-x-1 md:gap-x-5 md:m-10 m-3">
             <div class="w-auto md:w-64 ">
-                <img src="/pic2.png" class="h-24 md:h-64 rounded-xl hover:scale-110 transition-transform ease-in-out duration-300 shadow-lg shadow-blue-300" alt="">
+                <img src="/pic2.png" class="h-24 md:h-64 rounded-xl hover:scale-110  transition-transform ease-in-out duration-300 shadow-lg shadow-blue-300" alt="">
                 <div class="p-1 mt-1 md:p-2">
                     <span class="text-blue-500 text-xs md:text-lg "> Step - 1</span>
                     <span class="text-xs md:text-sm ml-3  mt-2">Please forward a copy of your passport via email or WhatsApp to our
