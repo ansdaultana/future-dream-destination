@@ -1,9 +1,19 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3';
+import { ref } from 'vue';
 import LinkforSidebar from './LinkforSidebar.vue';
 const page = usePage();
 const name = page.props.ziggy.location.split('/').pop();
+const travel = ref(false);
+const tourism = ref(false)
+const request = ref(false)
+const admin = ref(false)
+
+const toggleTravel=()=>{travel.value=!travel.value}
+const toggleTourism=()=>{tourism.value=!tourism.value}
+const toggleRequests=()=>{request.value=!request.value}
+const toggleAdmin=()=>{admin.value=!admin.value}
 
 </script>
 <template>
@@ -15,19 +25,12 @@ const name = page.props.ziggy.location.split('/').pop();
 
         </div>
         <div>
-            <Link :href="route('dashboard')">
 
-            <div id="container"
-                class="flex   tansition-transform hover:scale-105-transform hover:scale-105 duration-200 ease-in hover:bg-blue-100  rounded-md  hover:text-blue-800 mt-3">
-                <div class="bg-orange py-1 w-1" :class="{ 'bg-blue-500': name === 'dashboard' }">
-                </div>
-            </div>
-            </Link>
             <div>
 
-                <div id="container"
+                <div id="container" @click.prevent="toggleTravel"
                     class="flex p-2 hover:cursor-pointer bg-slate-200 bg-opacity-80 tansition-transform hover:scale-105 duration-200 ease-in hover:bg-white rounded-md hover:fill-orange-500  mt-3">
-                    
+
                     <div class="pl-4 flex p-2 justify-between">
                         <div class="flex">
                             <svg :class="{ 'text-orange-500': name === 'Travel' }" class="animate-bounce fill-blue-400"
@@ -41,7 +44,7 @@ const name = page.props.ziggy.location.split('/').pop();
                             </div>
                         </div>
 
-                        <div class="lg:ml-10">
+                        <div class="lg:ml-10 hidden md:block">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-6 h-6 mt-2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -50,32 +53,35 @@ const name = page.props.ziggy.location.split('/').pop();
                     </div>
                 </div>
             </div>
-            <LinkforSidebar :href="route('dashboard.tickets')" url="tickets" name="Tickets" />
+            <transition name="fade" mode="out-in">
+                <div v-if="travel" key="ticket-dropdown">
+                    <LinkforSidebar :href="route('dashboard.tickets')" url="tickets" name="Tickets" />
 
-            <LinkforSidebar :href="route('dashboard.visas')" url="visas" name="Visas" />
-
+                    <LinkforSidebar :href="route('dashboard.visas')" url="visas" name="Visas" />
+                </div>
+            </transition>
 
             <div>
 
-                <div id="container"
-                    class="flex p-2 hover:cursor-pointer tansition-transform hover:scale-105 duration-200 ease-in  hover:bg-white rounded-md  mt-3">
+                <div id="container" @click.prevent="toggleTourism"
+                    class="flex p-2 hover:cursor-pointer hover:cursor-pointer bg-slate-200 bg-opacity-80  tansition-transform hover:scale-105 duration-200 ease-in  hover:bg-white rounded-md  mt-3">
                     <div class="bg-orange py-1 w-1" :class="{ 'bg-orange-500': name === 'app.users' }">
 
                     </div>
                     <div class="pl-4 flex p-2">
-                        <svg :class="{ 'text-orange-500': name === 'app.users' }" fill="none" viewBox="0 0 24 24"
+                        <svg   fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-500 animate-bounce">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                         </svg>
 
 
-                        <div class="lg:ml-6 ml-2 hidden md:block" :class="{ 'text-orange-500': name === 'app.users' }">
+                        <div class="lg:ml-6 ml-2 hidden md:block"  >
                             Tourism
                         </div>
 
                     </div>
-                    <div class="lg:ml-4">
+                    <div class="lg:ml-6 hidden md:block">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6 mt-2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -84,11 +90,16 @@ const name = page.props.ziggy.location.split('/').pop();
 
                 </div>
             </div>
-            <LinkforSidebar :href="route('dashboard.tour')" url="tour" name="Tours" />
+
+            <transition name="fade" mode="out-in">
+                <div v-if="tourism" key="ticket-dropdown">
+                    <LinkforSidebar :href="route('dashboard.tour')" url="tour" name="Tours" />
+                </div>
+            </transition>
 
             <div>
 
-                <div id="container"
+                <div id="container" @click.prevent="toggleRequests"
                     class="flex p-2 hover:cursor-pointer bg-slate-200 bg-opacity-80 tansition-transform hover:scale-105 duration-200 ease-in hover:bg-white rounded-md   mt-3">
                     <div class="bg-orange py-1 w-1" :class="{ 'bg-blue-500': name === 'app.products' }">
 
@@ -105,7 +116,7 @@ const name = page.props.ziggy.location.split('/').pop();
                         </div>
 
                     </div>
-                    <div class="flex justify-end items-center">
+                    <div class="flex justify-end items-center hidden md:block">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6 mt-2 ml-2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -116,17 +127,64 @@ const name = page.props.ziggy.location.split('/').pop();
 
 
             </div>
-            <LinkforSidebar :href="route('dashboard.view.tickets.requests')" url="tickets-request" name="Tickets" />
-            <LinkforSidebar :href="route('dashboard.view.visa.requests')" url="visa-request" name="Visa" />
-            <LinkforSidebar :href="route('dashboard.view.tour.requests')" url="tour-request" name="Tour" />
+            <transition name="fade" mode="out-in">
+                <div v-if="request" key="ticket-dropdown">
+                    <LinkforSidebar :href="route('dashboard.view.tickets.requests')" url="tickets-request" name="Tickets" />
+                    <LinkforSidebar :href="route('dashboard.view.visa.requests')" url="visa-request" name="Visa" />
+                    <LinkforSidebar :href="route('dashboard.view.tour.requests')" url="tour-request" name="Tour" />
+
+                </div>
+            </transition>
+            <div>
+
+                <div id="container" @click.prevent="toggleAdmin"
+                    class="flex p-2  hover:cursor-pointer bg-slate-200 bg-opacity-80  tansition-transform hover:scale-105 duration-200 ease-in  hover:bg-white rounded-md  mt-3">
+                    <div class="bg-orange py-1 w-1" >
+
+                    </div>
+                    <div class="pl-4 flex p-2">
+                        <svg   fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-500 animate-bounce">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                        </svg>
 
 
+                        <div class="lg:ml-6 ml-2 hidden md:block"  >
+                            Admin
+                        </div>
 
+                    </div>
+                    <div class="lg:ml-6 hidden md:block">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 mt-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </div>
+
+                </div>
+            </div>
+            <transition name="fade" mode="out-in">
+                <div v-if="admin" key="ticket-dropdown">
+                    <LinkforSidebar :href="route('dashboard.view.admin.requests')" url="admin-request" name="Requests" />
+
+                </div>
+            </transition>
         </div>
     </div>
 </template>
 <style>
 #container:hover .bg-orange {
     background-color: rgb(12, 150, 255);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }
 </style>

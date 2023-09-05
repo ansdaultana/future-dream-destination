@@ -10,7 +10,7 @@ const props = defineProps({
     <div class="bg-slate-500 sm:mx-auto sm:w-full sm:max-w-sm p-10 rounded-xl shadow-xl">
 
       <div class="sm:mx-auto sm:w-full sm:max-w-sm ">
-        <img class="mx-auto h-40 w-auto animate-bounce" src="https://res.cloudinary.com/ddrivhxfq/image/upload/v1693297716/qjbklkn6j3spdlfoqpkx.png" alt="Your Company" />
+        <img class="mx-auto h-40 w-auto animate-bounce" src="/GuestLogo.png" alt="Your Company" />
         <h2 class="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-white">{{ props.title }}</h2>
       </div>
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">

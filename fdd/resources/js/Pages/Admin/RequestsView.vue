@@ -4,6 +4,9 @@ import AppLayout from '@/Layouts/AppLayout.vue'
 import { computed, ref, } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3';
+import { router } from '@inertiajs/vue3';
+import headerRequestTicket from './headerRequestTicket.vue';
+import headerRequestOther from './headerRequestOthers.vue'
 import { Head } from '@inertiajs/vue3';
 import { defineProps } from 'vue';
 const viewmessage = ref('')
@@ -12,10 +15,8 @@ const request = ref({})
 const slugToBeDeleted = ref('')
 const page = usePage();
 const requests = computed(() => page.props.requests);
-const form = useForm({
-  id: null
-});
-const { ticket, visa, tour, heading, url, } = defineProps(['ticket', 'visa', 'tour', 'heading', 'url']);
+
+const { ticket, visa, tour, heading, url, admin } = defineProps(['ticket', 'visa', 'tour', 'heading', 'url', 'admin']);
 const removeInitialZeroAndOpenWhatsApp = (originalPhoneNumber) => {
   const phoneNumber = originalPhoneNumber.replace(/^0/, '');
   getWhatsAppLink(phoneNumber);
@@ -29,7 +30,7 @@ const getWhatsAppLink = (phoneNumber) => {
 
 
 const done = (id) => {
-  form.post(`/dashboard/${url}/${id}`);
+  router.post(`/dashboard/${url}/${id}`);
   if (tour || visa) {
     ToggleModal()
   }
@@ -48,6 +49,15 @@ const ViewModal = (temprequest) => {
 
   }
   slugToBeDeleted.value = temprequest.slug
+}
+
+const YesAdmin=(id)=>
+{
+  router.post(`/dashboard/${url}/${id}`);
+}
+const NotAdmin=(id)=>
+{
+  router.post(`/dashboard/admin-no-responded/${id}`);
 }
 </script>
 <template>
@@ -68,42 +78,36 @@ const ViewModal = (temprequest) => {
 
       <div name="panel" class=" mr-1 absolute  rounded-md border-slate-300 w-full h-full   border-t ">
         <div class=" p-2 bg-slate-50 ">
-          <div class="flex bg-blue-400 p-2 border-2  rounded-lg justify-between text-white">
-            <div class=" ml-5 w-36 hidden md:block">
-              Name
-            </div>
-
-            <div class="w-36 " v-if="ticket === true">
-              to
-            </div>
-            <div class="w-36 " v-if="ticket === true">
-              from
-            </div>
-
-            <div class="w-36 " v-if="ticket === true">
-              Service
-            </div>
-            <div class="w-40 hidden lg:block" v-if="ticket === true">
-              Date of Travel
-            </div>
-            <div class="w-40">
-              Actions
-            </div>
+          <div v-if="ticket === true">
+            <headerRequestTicket />
           </div>
+          <div v-if="(ticket === false) && (visa === true || tour === true || admin === true)">
+            <headerRequestOther />
+
+          </div>
+
         </div>
 
         <ul role="list"
           class="divide-y-8 divide-white md:ml-5 m-2 md:mr-5 overflow-y-scroll overflow-x-hidden h-[500px] scrollbar  text-slate-800 font-serif">
           <li v-for="request in requests" :key="request.ID"
             class="cursor-pointer hover:shadow-md items-center rounded-xl bg-slate-100 flex justify-between gap-x-6 py-5 shadow-xl shadow-blue-100 ">
-
-            <div class=" ml-5 w-36 hidden md:block " :class="{'flex': ticket===false,}">
+            <div class=" ml-5 w-36 hidden md:flex " v-if="ticket === true">
               <div>
                 <img src="/johndoe.png" alt="" class="h-12 rounded-full">
               </div>
-              <span v-text="request.name"></span>
+              <div class="flex items-center ml-2">
+                <span v-text="request.name"></span>
+              </div>
             </div>
-
+            <div class=" ml-5 w-36 " v-if="ticket === false">
+              <div>
+                <img src="/johndoe.png" alt="" class="h-12 rounded-full">
+              </div>
+              <div class="flex items-center ml-2">
+                <span v-text="request.name"></span>
+              </div>
+            </div>
             <div class="w-36 ml-2 " v-text="request.to" v-if="ticket === true">
             </div>
             <div class="w-36 ml-2 " v-text="request.from" v-if="ticket === true">
@@ -114,15 +118,17 @@ const ViewModal = (temprequest) => {
               {{ request.booking_date }}
 
             </div>
-            <div class="w-48 h-10 text-black hover:text-black   flex mr-8 ml-2 gap-3"
+            <div class="w-48 h-10 text-black hover:text-black   flex md:mr-8 md:ml-2 gap-3" v-if="admin === false"
               :class="{ 'justify-end': ticket === true, 'justify-between': tour === true || visa === true }">
               <div @click.prevent="ViewModal(request)" v-if="ticket === false"
-                class="shadow-lg bg-white px-6 py-2 rounded-xl transition-transform hover:scale-105 flex">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                class="shadow-lg bg-white md:px-6 md:py-2 py-2 px-1 rounded-xl transition-transform hover:scale-105 flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-6 h-6 mr-2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                
+
                 <span>
                   View
                 </span>
@@ -143,6 +149,25 @@ const ViewModal = (temprequest) => {
                 </svg>
               </div>
 
+            </div>
+            <div class="w-32 h-10 text-black hover:text-black   flex md:mr-8 md:ml-2 gap-3" v-if="admin === true"
+              :class="{ 'justify-end': ticket === true, 'justify-between': tour === true || visa === true }">
+
+              <div @click="YesAdmin(request.id)"
+                class="shadow-lg bg-blue-400 p-2 hover:bg-blue-500 rounded-lg transition-transform hover:scale-105 ease-in-out duration-300 cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-6 h-6 text-white">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+              </div>
+              <div @click="NotAdmin(request.id)"
+                class="shadow-lg bg-red-400 p-2 hover:bg-red-500 rounded-lg transition-transform hover:scale-105 ease-in-out duration-300 cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-6 h-6 text-white">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+
+              </div>
             </div>
           </li>
         </ul>

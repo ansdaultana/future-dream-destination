@@ -5,5 +5,5 @@ import RequestsView from './RequestsView.vue';
 <template>
     <Head title="Tickets"  />
 
-    <RequestsView :ticket="true" :visa="false" :tour="false" :admin="false" :url="'ticket-request-responded'" :heading="'Ticket Requests'"/>
+    <RequestsView :ticket="false" :visa="false" :tour="false" :admin="true" :url="'admin-yes-responded'" :heading="'Admin Requests'"/>
 </template>

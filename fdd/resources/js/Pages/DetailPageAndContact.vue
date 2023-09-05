@@ -4,28 +4,29 @@ import Footer from '@/Components/Footer.vue';
 import ContactInfo from '@/Components/ContactInfo.vue';
 import { computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
-import {useForm} from '@inertiajs/vue3';
-import {Head} from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 const page = usePage();
 const item = computed(() => page.props.item)
 const about = computed(() => page.props.about)
-const form=useForm({
+const form = useForm({
     name: '',
     email: '',
     phone: null,
-    message:'',
-    about:about
+    message: '',
+    about: about
 })
 
-const submitForm =(slug)=>{
-form.post(`/submit-user-request/${slug}`);
+const submitForm = (slug) => {
+    form.post(`/submit-user-request/${slug}`);
 }
 </script>
 
 
 <template>
     <Navbar />
-    <Head title="FDD"  />
+
+    <Head title="FDD" />
 
 
     <div class="h-full    bg-slate-200 m-4 md:m-10 rounded-xl">
@@ -79,38 +80,39 @@ form.post(`/submit-user-request/${slug}`);
                         <input v-model="form.name" id="name" name="name" type="text"
                             class="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
                         <div v-if="form.errors.name" class="text-red-500 mt-1">{{ form.errors.name }}</div>
-        
+
                     </div>
-                    <div class="flex-col md:flex mt-4 md:space-x-4 space-y-3">
+                    <div class=" grid-cols-1 md:grid-cols-2 grid  mt-4  ">
                         <div class="w-1/2">
                             <label class="block text-gray-700 font-medium mb-1" for="email">Email</label>
                             <input v-model="form.email" id="email" name="email" type="email" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
                             <div v-if="form.errors.email" class="text-red-500 mt-1">{{ form.errors.email }}</div>
                         </div>
-                        <div class="w-1/2">
-                            <label class="block text-gray-700 text-xs md:text-lg  font-medium mb-1" for="phone">Phone (without country code & initial
+                        <div class="w-1/2 ">
+                            <label class="block text-gray-700 text-xs md:text-sm  mt-1 font-medium mb-1" for="phone">Phone
+                                (without country code & initial
                                 0)</label>
                             <input v-model="form.phone" id="phone" name="phone" type="tel" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
                             <div v-if="form.errors.phone" class="text-red-500 mt-1">{{ form.errors.phone }}</div>
                         </div>
                     </div>
-        
+
                     <div class="mt-4">
                         <label class="block text-gray-700 font-medium mb-1" for="booking_date">Your Message:</label>
-                        <textarea v-model="form.message" rows="5" id="booking_date"  type="text" required
+                        <textarea v-model="form.message" rows="5" id="booking_date" type="text" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
                         </textarea>
                         <div v-if="form.errors.message" class="text-red-500 mt-1">{{ form.errors.message }}
                         </div>
                     </div>
-               <div class="flex items-center justify-end">
-                <button type="submit" :disabled="form.processing"
-                class="w-32 bg-blue-500 text-white py-2 mt-6 text-lg rounded-lg hover:bg-blue-600 transition duration-300 ">Submit</button>
+                    <div class="flex items-center justify-end">
+                        <button type="submit" :disabled="form.processing"
+                            class="w-32 bg-blue-500 text-white py-2 mt-6 text-lg rounded-lg hover:bg-blue-600 transition duration-300 ">Submit</button>
 
-               </div>
-                                </form>
+                    </div>
+                </form>
             </div>
         </div>
 
