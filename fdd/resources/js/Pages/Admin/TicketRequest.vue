@@ -1,5 +1,4 @@
 <script setup>
-import { useForm } from '@inertiajs/vue3';
 import RequestsView from './RequestsView.vue';
 </script>
 <template>

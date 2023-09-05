@@ -13,8 +13,10 @@ const ticketReq = useForm({
 
 const submitForm = () => {
     try {
-        ticketReq.post('/ticket-request', ticketReq);
-        ticketReq.reset();
+        ticketReq.post('/ticket-request', ticketReq, {
+        onSuccess: () => showalert.value = true,
+    });
+    form.reset();
     } catch (error) {
 
     }

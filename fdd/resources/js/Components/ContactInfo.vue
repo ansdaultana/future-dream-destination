@@ -11,7 +11,7 @@ const toggleContact=()=>{
 
 <template>
     <div class="w-auto bg-blue-500 rounded-lg shadow-lg  hover:cursor-pointer hover:scale-105 transition-transform duration-200 ease-in "
-        :class="{ 'right-0 top-20 fixed h-auto': nav, 'h-full': !nav }">
+        :class="{ 'right-5 top-20 fixed h-auto': nav, 'h-full': !nav }">
         <div class="text-white p-2 md:p-4 gap-4">
             <div class="p-1 flex items-center justify-end" @click.prevent="toggleContact" v-if="nav">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

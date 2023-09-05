@@ -2,14 +2,13 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
 import { computed, ref, } from 'vue';
-import { useForm } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3';
 import headerRequestTicket from './headerRequestTicket.vue';
 import headerRequestOther from './headerRequestOthers.vue'
 import { Head } from '@inertiajs/vue3';
 import { defineProps } from 'vue';
-const viewmessage = ref('')
+import HeaderRequestAdmin from './headerRequestAdmin.vue';
 const openmodal = ref(false)
 const request = ref({})
 const slugToBeDeleted = ref('')
@@ -31,9 +30,7 @@ const getWhatsAppLink = (phoneNumber) => {
 
 const done = (id) => {
   router.post(`/dashboard/${url}/${id}`);
-  if (tour || visa) {
-    ToggleModal()
-  }
+ 
 }
 
 const ToggleModal = () => {
@@ -45,7 +42,6 @@ const ViewModal = (temprequest) => {
   if (ticket === false) {
     request.value = temprequest;
 
-    console.log(request.value)
 
   }
   slugToBeDeleted.value = temprequest.slug
@@ -81,13 +77,34 @@ const NotAdmin=(id)=>
           <div v-if="ticket === true">
             <headerRequestTicket />
           </div>
-          <div v-if="(ticket === false) && (visa === true || tour === true || admin === true)">
+          <div v-if="(ticket === false &&  admin === false) && (visa === true || tour === true )">
             <headerRequestOther />
+
+          </div>
+          <div v-if="admin === true">
+            <HeaderRequestAdmin />
 
           </div>
 
         </div>
 
+        <div class="p-4 h-20" v-if="requests.length === 0">
+          <div class="flex justify-center bg-slate-100 rounded-xl items-center w-full   mt-20 p-4 md:p-20">
+            <div class="flex">
+              <div class="text-orange-500 self-start text-5xl px-8 font-bold border-r pb-8 leading-10">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20 ">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 16.318A4.486 4.486 0 0012.016 15a4.486 4.486 0 00-3.198 1.318M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+                </svg>
+                
+              </div>
+              <div class="md:px-8 p-1">
+                <h1 class="text-2xl md:text-5xl font-bold mb-2">There are No Requests</h1>
+                <div class="mt-5">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <ul role="list"
           class="divide-y-8 divide-white md:ml-5 m-2 md:mr-5 overflow-y-scroll overflow-x-hidden h-[500px] scrollbar  text-slate-800 font-serif">
           <li v-for="request in requests" :key="request.ID"
@@ -100,14 +117,20 @@ const NotAdmin=(id)=>
                 <span v-text="request.name"></span>
               </div>
             </div>
-            <div class=" ml-5 w-36 " v-if="ticket === false">
+          
+            <div class=" ml-5 w-36 flex " v-if="ticket === false">
               <div>
                 <img src="/johndoe.png" alt="" class="h-12 rounded-full">
               </div>
-              <div class="flex items-center ml-2">
+              <div class="flex items-center ml-4">
                 <span v-text="request.name"></span>
               </div>
-            </div>
+            </div>    
+          
+            <div class="w-40" v-if="admin===true">
+              <span v-text="request.email"></span>
+
+          </div>
             <div class="w-36 ml-2 " v-text="request.to" v-if="ticket === true">
             </div>
             <div class="w-36 ml-2 " v-text="request.from" v-if="ticket === true">
@@ -141,7 +164,7 @@ const NotAdmin=(id)=>
                 </svg>
 
               </div>
-              <div @click="done(request.id)"
+              <div @click.prevent="done(request.id)"
                 class="shadow-lg bg-blue-400 p-2 hover:bg-blue-500 rounded-lg transition-transform hover:scale-105 ease-in-out duration-300 cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-6 h-6 text-white">

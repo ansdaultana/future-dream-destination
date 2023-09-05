@@ -1,11 +1,15 @@
 <script setup>
-import Navbar from '@/Components/Navbar.vue';
-import Footer from '@/Components/Footer.vue';
+
 import ContactInfo from '@/Components/ContactInfo.vue';
 import { computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import { useForm } from '@inertiajs/vue3';
 import { Head } from '@inertiajs/vue3';
+import { defineOptions } from 'vue';
+import HomeLayout from '@/Layouts/HomeLayout.vue';
+defineOptions({
+    layout: HomeLayout,
+});
 const page = usePage();
 const item = computed(() => page.props.item)
 const about = computed(() => page.props.about)
@@ -20,18 +24,17 @@ const form = useForm({
 const submitForm = (slug) => {
     form.post(`/submit-user-request/${slug}`);
 }
+
 </script>
 
 
 <template>
-    <Navbar />
-
     <Head title="FDD" />
 
 
-    <div class="h-full    bg-slate-200 m-4 md:m-10 rounded-xl">
+    <div class="h-full    bg-slate-100 m-4 md:m-10 rounded-xl">
 
-        <div class="w-full flex ">
+        <div class="w-full flex">
             <div class="w-2/3">
                 <div class="flex">
 
@@ -41,17 +44,26 @@ const submitForm = (slug) => {
                     <div>
                         <div class="mt-4  md:mt-10 md:mb-5 text-2xl font-bold">
                             <span class="" v-text="item.title"></span>
-                            <div class="text-lg">
+                            <div class="text-lg" v-if="about==='Visa'">
                                 Fee:
                                 <span class="text-blue-500" v-text="item.fee"></span>
                                 <span class="text-blue-500"> AED</span>
                             </div>
-                            <div class="text-lg">
+                            <div class="text-lg" v-if="about==='Visa'">
                                 Discount:
                                 <span class="text-blue-500" v-text="item.discount"></span>
                                 <span class="text-blue-500"> AED</span>
                             </div>
-
+                            <div class="text-lg" v-if="about==='Tourism'">
+                                Inside Country Fee:
+                                <span class="text-blue-500" v-text="item.inside_country_fee"></span>
+                                <span class="text-blue-500"> AED</span>
+                            </div>
+                            <div class="text-lg" v-if="about==='Tourism'">
+                                Outside Country Fee:
+                                <span class="text-blue-500" v-text="outside_country_fee"></span>
+                                <span class="text-blue-500"> AED</span>
+                            </div>
                         </div>
                         <div class="w-40 md:w-96">
                             <span class="mt-4    text-xs md:text-[16px] " v-text="item.description">
@@ -68,6 +80,36 @@ const submitForm = (slug) => {
             </div>
         </div>
 
+        <div class="flex item-center  justify-center gap-x-1 md:gap-x-5 md:m-10 m-3">
+            <div class="w-auto md:w-64 ">
+                <img src="/pic2.png" class="h-24 md:h-64 rounded-xl" alt="">
+                <div class="p-1 md:p-2">
+                    <span class="text-blue-500 text-xs md:text-lg "> Step - 1</span>
+                    <span class="text-xs md:text-sm ml-3  mt-2">Please forward a copy of your passport via email or WhatsApp to our
+                        team</span>
+                </div>
+
+            </div>
+            <div class="w-auto md:w-64 ">
+                <img src="/pic3.png" class="h-24 md:h-64 rounded-xl" alt="">
+                <div class="p-1 md:p-2">
+                    <span class="text-blue-500 text-xs md:text-lg"> Step - 2</span>
+                    <span class="text-xs md:text-sm ml-3  mt-2">Effortlessly complete your payment, whether online or offline.</span>
+                </div>
+
+            </div>
+            <div class="w-auto md:w-64">
+                <img src="/pic1.png" class="h-24 md:h-64 rounded-xl" alt="">
+                <div class="p-1 md:p-2">
+                    <span class="text-blue-500 text-xs md:text-lg"> Step - 3</span>
+                    <span class="text-xs md:text-sm ml-3  mt-2">Receive your visa document via email or WhatsApp</span>
+                </div>
+
+            </div>
+
+
+
+        </div>
         <div class="flex text-sm md:text-lg items-center justify-center md:p-10 py-3">
             <div class=" bg-white h-full w-[90%] mt-4 shadow-lg  rounded-xl">
                 <div class="mt-5 ml-5">
@@ -117,6 +159,4 @@ const submitForm = (slug) => {
         </div>
 
     </div>
-
-    <Footer />
 </template>

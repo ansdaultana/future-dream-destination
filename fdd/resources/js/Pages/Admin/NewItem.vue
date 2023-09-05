@@ -1,6 +1,6 @@
 <script setup>
 
-import { computed, ref, onMounted, } from 'vue';
+import {  ref, onMounted, } from 'vue';
 import { router } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue'
 import { usePage } from '@inertiajs/vue3';
@@ -76,7 +76,6 @@ const deleteUploaded = () => {
 
 
 
-const validationErrors = ref()
 const ImagesError = ref()
 const isEditTicketPage = router.page.url.includes('/dashboard/edit-ticket/');
 const isNewTicketPage = router.page.url.includes('/dashboard/new-ticket');
@@ -142,8 +141,8 @@ const SubmitRequest = () => {
             </div>
 
             <div class=" ml-2 mr-2   rounded-xl ">
-                <div class="w-auto  flex  md:p-10 bg-slate-50 rounded-2xl shadow-lg">
-                    <div class="sm:w-1/3 md:w-1/4 bg-slate-100 shadow-2xl rounded-xl  md:ml-28 ">
+                <div class="w-auto  flex  md:p-10  rounded-2xl">
+                    <div class="sm:w-1/3 md:w-1/4 pt-3 bg-slate-100 shadow-2xl rounded-xl  md:ml-28 ">
                         <div v-if="ImagesError" class="text-red-800 text-sm font-bold ml-2">
                             {{ ImagesError.value }}
                         </div>
@@ -210,7 +209,7 @@ const SubmitRequest = () => {
                     <div class="w-full md:w-1/2">
                         <div class="  w-full">
                             <form @submit.prevent="SubmitRequest"
-                                class="bg-blue-200 p-4 shadow-lg md:px-14 md:py-14  rounded-md"
+                                class="bg-gradient-to-br bg-opacity-50 from-[#3d9ecfa1] from-25% % via-sky-300 via-50% to-[#3d9ecfa1] to-70%   p-4 shadow-lg md:px-14 md:py-14  rounded-md"
                                 enctype="multipart/form-data">
                                 <div class="mb-4">
                                     <label for="product-title" class="block text-gray-700 font-semibold mb-2">

@@ -14,9 +14,9 @@ class TourismController extends Controller
     {
         try {
 
-            $visa = Tourism::where('slug', $slug)->firstOrFail();
-            $imageData = base64_encode(Storage::get($visa->image_path));
-            $visa->image_base64 = 'data:image/jpeg;base64,' . $imageData;
+            $Tourism = Tourism::where('slug', $slug)->firstOrFail();
+            $imageData = base64_encode(Storage::get($Tourism->image_path));
+            $Tourism->image_base64 = 'data:image/jpeg;base64,' . $imageData;
             
         } catch (\Throwable $th) {
             throw $th;
@@ -24,7 +24,7 @@ class TourismController extends Controller
         return Inertia::render(
             'DetailPageAndContact',
             [
-                'item' => $visa,
+                'item' => $Tourism,
                 'about'=>'Tourism'
             ]
         );

@@ -41,7 +41,7 @@ class TicketRequestController extends Controller
     {
         try {
 
-            $requests = TicketRequest::where('responded', 0)->get();
+            $requests = TicketRequest::where('responded', 0) ->orderBy('created_at', 'desc')->get();
         } catch (\Throwable $th) {
             throw $th;
         }

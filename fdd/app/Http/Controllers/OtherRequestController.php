@@ -43,7 +43,7 @@ class OtherRequestController extends Controller
     {
         try {
 
-            $requests = OtherRequest::where('responded',0)->where('about','Visa')
+            $requests = OtherRequest::where('responded',0)->where('about','Visa')->orderBy('created_at', 'desc')
             ->get();
         } catch (\Throwable $th) {
             throw $th;
@@ -56,7 +56,7 @@ class OtherRequestController extends Controller
     {
         try {
 
-            $requests = OtherRequest::where('responded',0)->where('about','Tourism')
+            $requests = OtherRequest::where('responded',0)->where('about','Tourism')->orderBy('created_at', 'desc')
             ->get();
         } catch (\Throwable $th) {
             throw $th;

@@ -9,7 +9,7 @@
             Email
         </div>
         <div class="w-40">
-            Actions
+            Make Admin
         </div>
     </div>
 </template>

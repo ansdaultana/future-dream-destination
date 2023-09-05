@@ -6,7 +6,7 @@ import { useForm } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3';
 import { Head } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3';
-const { ticket, visa, tour,deleteUrl,editUrl } = defineProps(['ticket', 'visa','tour','deleteUrl','editUrl']);
+const { ticket, visa, tour, deleteUrl, editUrl } = defineProps(['ticket', 'visa', 'tour', 'deleteUrl', 'editUrl']);
 const page = usePage();
 const items = computed(() => page.props.items);
 const openmodal = ref(false);
@@ -14,11 +14,6 @@ const slugToBeDeleted = ref('')
 const form = useForm({
   id: null
 });
-const getWhatsAppLink = (phoneNumber) => {
-  const message = encodeURIComponent('Hello, I am From Future Dream Destination!');
-  const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
-  window.open(whatsappLink, '_blank');
-};
 
 const ToggleModal = () => { openmodal.value = !openmodal.value }
 
@@ -73,19 +68,22 @@ const formatUpdatedAt = (date) => {
 
       <div class=" flex justify-between ">
         <div class="flex">
-          <div class="text-black text-lg mt-2  ml-5 hover:text-black " v-if="ticket === true && visa===false && tour===false">
+          <div class="text-black text-lg mt-2  ml-5 hover:text-black "
+            v-if="ticket === true && visa === false && tour === false">
             Tickets
           </div>
-          <div class="text-black text-lg mt-2  ml-5 hover:text-black " v-if="ticket === false && visa===tue && tour===false">
+          <div class="text-black text-lg mt-2  ml-5 hover:text-black "
+            v-if="ticket === false && visa === tue && tour === false">
             Visas
           </div>
-          <div class="text-black text-lg mt-2  ml-5 hover:text-black " v-if="ticket === false && visa===false && tour===true">
+          <div class="text-black text-lg mt-2  ml-5 hover:text-black "
+            v-if="ticket === false && visa === false && tour === true">
             Tours
           </div>
         </div>
 
 
-        <div @click="goToNewVisa" v-if="visa === true && ticket===false && tour===false"
+        <div @click="goToNewVisa" v-if="visa === true && ticket === false && tour === false"
           class="
     cursor-pointer
       rotate-svg
@@ -106,7 +104,7 @@ const formatUpdatedAt = (date) => {
 
 
         </div>
-        <div @click="goToNewTicket" v-if="ticket === true && visa===false && tour===false"
+        <div @click="goToNewTicket" v-if="ticket === true && visa === false && tour === false"
           class="
             cursor-pointer
               rotate-svg
@@ -126,7 +124,7 @@ const formatUpdatedAt = (date) => {
           </button>
 
         </div>
-        <div @click="goToNewTour" v-if="ticket === false && ticket===false && tour===true"
+        <div @click="goToNewTour" v-if="ticket === false && ticket === false && tour === true"
           class="
             cursor-pointer
               rotate-svg
@@ -157,16 +155,16 @@ const formatUpdatedAt = (date) => {
             <div class=" ml-5 w-36  ">
               Title
             </div>
-            <div class=" ml-5 w-36 hidden md:block " v-if="visa === true && tour=== false && ticket===false">
+            <div class=" ml-5 w-36 hidden md:block " v-if="visa === true && tour === false && ticket === false">
               Fee
             </div>
-            <div class=" ml-5 w-36 hidden md:block text-sm " v-if="visa === false && tour=== true && ticket===false">
+            <div class=" ml-5 w-36 hidden md:block text-sm " v-if="visa === false && tour === true && ticket === false">
               Inside Country Fee
             </div>
-            <div class=" ml-5 w-36 hidden md:block  text-sm" v-if="visa === false && tour=== true && ticket===false">
+            <div class=" ml-5 w-36 hidden md:block  text-sm" v-if="visa === false && tour === true && ticket === false">
               Outside Country Fee
             </div>
-            <div class=" ml-5 w-36  hidden md:block" v-if="(visa === true || tour=== true) && ticket===false">
+            <div class=" ml-5 w-36  hidden md:block" v-if="(visa === true || tour === true) && ticket === false">
               Discount
             </div>
 
@@ -179,7 +177,22 @@ const formatUpdatedAt = (date) => {
             </div>
           </div>
         </div>
-
+        <div class="p-4 h-20" v-if="items.length === 0">
+          <div class="flex justify-center bg-slate-100 rounded-xl items-center w-full   mt-20 p-4 md:p-20">
+            <div class="flex">
+              <div class="text-orange-500 self-start text-5xl px-8 font-bold border-r pb-8 leading-10">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20 ">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 16.318A4.486 4.486 0 0012.016 15a4.486 4.486 0 00-3.198 1.318M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+                </svg>
+              </div>
+              <div class="md:px-8 p-1">
+                <h1 class="text-2xl md:text-5xl font-bold mb-2">There are No Items</h1>
+                <div class="mt-5">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <ul role="list"
           class="divide-y-8 divide-white md:ml-5 m-2 md:mr-5  overflow-y-scroll overflow-x-hidden h-[500px] scrollbar  text-slate-800 font-serif">
           <li v-for="item in items" :key="item.ID"
@@ -191,15 +204,16 @@ const formatUpdatedAt = (date) => {
               <span v-text="item.title"></span>
             </div>
 
-            <div class=" ml-5 w-36 hidden md:block " v-if="visa === true && tour=== false && ticket===false">
+            <div class=" ml-5 w-36 hidden md:block " v-if="visa === true && tour === false && ticket === false">
               <span v-text="item.fee"></span>
             </div>
-            <div class=" ml-5 w-36 hidden md:block " v-if="visa === false && tour=== true && ticket===false">
+            <div class=" ml-5 w-36 hidden md:block " v-if="visa === false && tour === true && ticket === false">
               <span v-text="item.inside_country_fee"></span>
-            </div><div class=" ml-5 w-36 hidden md:block " v-if="visa === false && tour=== tue && ticket===false">
+            </div>
+            <div class=" ml-5 w-36 hidden md:block " v-if="visa === false && tour === tue && ticket === false">
               <span v-text="item.outside_country_fee"></span>
             </div>
-            <div class=" ml-5 w-36 hidden md:block " v-if="(visa === true || tour=== true) && ticket===false">
+            <div class=" ml-5 w-36 hidden md:block " v-if="(visa === true || tour === true) && ticket === false">
               <span v-text="item.discount"></span>
             </div>
             <div class="w-40 ml-2 md:pl-8 hidden lg:block">
