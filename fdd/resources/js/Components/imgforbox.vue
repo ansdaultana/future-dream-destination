@@ -5,5 +5,5 @@ const props=defineProps({
 });
 </script>
 <template>
-    <img :src="props.src" class="h-14 m-1 rounded-lg  shadow-lg hover:scale-105 hover:cursor-pointer transition-transform duration-200 ease-in-out" alt="">
+    <img :src="props.src" class="h-10 md:h-14 m-1 rounded-lg  shadow-lg hover:scale-105 hover:cursor-pointer transition-transform duration-200 ease-in-out" alt="">
 </template>

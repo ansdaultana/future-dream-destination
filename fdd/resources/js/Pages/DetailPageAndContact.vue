@@ -39,7 +39,7 @@ const submitForm = (slug) => {
                 <div class="flex">
 
                     <div class=" mt-4 ml-4 md:m-10">
-                        <img :src="item.image_base64" alt="" class="rounded-xl md:h-96 md:w-96 w-40 h-40">
+                        <img :src="item.image_base64" alt="" class="rounded-xl md:h-96 md:w-96 w-40 h-40  hover:scale-110 transition-transform ease-in-out duration-300">
                     </div>
                     <div>
                         <div class="mt-4  md:mt-10 md:mb-5 text-2xl font-bold">
@@ -82,8 +82,8 @@ const submitForm = (slug) => {
 
         <div class="flex item-center  justify-center gap-x-1 md:gap-x-5 md:m-10 m-3">
             <div class="w-auto md:w-64 ">
-                <img src="/pic2.png" class="h-24 md:h-64 rounded-xl" alt="">
-                <div class="p-1 md:p-2">
+                <img src="/pic2.png" class="h-24 md:h-64 rounded-xl hover:scale-110 transition-transform ease-in-out duration-300 shadow-lg shadow-blue-300" alt="">
+                <div class="p-1 mt-1 md:p-2">
                     <span class="text-blue-500 text-xs md:text-lg "> Step - 1</span>
                     <span class="text-xs md:text-sm ml-3  mt-2">Please forward a copy of your passport via email or WhatsApp to our
                         team</span>
@@ -91,16 +91,16 @@ const submitForm = (slug) => {
 
             </div>
             <div class="w-auto md:w-64 ">
-                <img src="/pic3.png" class="h-24 md:h-64 rounded-xl" alt="">
-                <div class="p-1 md:p-2">
+                <img src="/pic3.png" class="h-24 md:h-64 rounded-xl hover:scale-110 transition-transform ease-in-out duration-300 shadow-lg   shadow-blue-300" alt="">
+                <div class="p-1 mt-1 md:p-2">
                     <span class="text-blue-500 text-xs md:text-lg"> Step - 2</span>
                     <span class="text-xs md:text-sm ml-3  mt-2">Effortlessly complete your payment, whether online or offline.</span>
                 </div>
 
             </div>
             <div class="w-auto md:w-64">
-                <img src="/pic1.png" class="h-24 md:h-64 rounded-xl" alt="">
-                <div class="p-1 md:p-2">
+                <img src="/pic1.png" class="h-24 md:h-64 rounded-xl hover:scale-110 transition-transform ease-in-out duration-300 shadow-lg shadow-blue-300" alt="">
+                <div class="p-1 mt-1 md:p-2">
                     <span class="text-blue-500 text-xs md:text-lg"> Step - 3</span>
                     <span class="text-xs md:text-sm ml-3  mt-2">Receive your visa document via email or WhatsApp</span>
                 </div>
@@ -110,8 +110,8 @@ const submitForm = (slug) => {
 
 
         </div>
-        <div class="flex text-sm md:text-lg items-center justify-center md:p-10 py-3">
-            <div class=" bg-white h-full w-[90%] mt-4 shadow-lg  rounded-xl">
+        <div class="flex text-sm md:text-lg items-center justify-center md:p-10 py-3  hover:scale-105 transition-transform ease-in-out duration-300">
+            <div class=" bg-gradient-to-br bg-opacity-20 from-[#3dcfa66b] from-25% % via-sky-300 via-50% to-[#3d9ecf72] to-70%  h-full w-[90%] mt-4 shadow-lg  rounded-xl">
                 <div class="mt-5 ml-5">
                     <span class="mt-5  text-blue-500">
                         If you have any Question, Regarding this service fill the form and we will contact you! </span>
@@ -143,7 +143,7 @@ const submitForm = (slug) => {
 
                     <div class="mt-4">
                         <label class="block text-gray-700 font-medium mb-1" for="booking_date">Your Message:</label>
-                        <textarea v-model="form.message" rows="5" id="booking_date" type="text" required
+                        <textarea v-model="form.message" rows="2" id="booking_date" type="text" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
                         </textarea>
                         <div v-if="form.errors.message" class="text-red-500 mt-1">{{ form.errors.message }}

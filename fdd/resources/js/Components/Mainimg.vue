@@ -2,6 +2,7 @@
 import imgforbox from '@/Components/imgforbox.vue'
 import { Link } from '@inertiajs/vue3';
 import ContactInfo from './ContactInfo.vue';
+import ImageSlider from './ImageSlider.vue';
 import { inject } from 'vue'
 const contact = inject('contact')
 const openContact=()=>{
@@ -11,9 +12,10 @@ const openContact=()=>{
 <template>
     <div class=" ">
         <div class="">
-            <img src="/HomePage.jpg" alt=""
-                class=" w-screen h-auto rounded-b-lg">
-            <div class=" flex items-center justify-center md:-mt-24 " >
+            <!-- <img src="/HomePage.jpg" alt=""
+                class=" w-screen h-auto rounded-b-lg"> -->
+                <ImageSlider/>
+            <div class=" flex items-center justify-center md:-mt-40 " >
                 <div class="m-2 w-full md:w-1/2 md:h-44 bg-slate-50 rounded-xl  shadow-lg shadow-blue-300 hover:cursor-pointer animate-bounce">
                     <div class="">
                         <div class="text-lg font-bold p-2 md:p-2">
@@ -31,19 +33,19 @@ const openContact=()=>{
                             <div class="flex justify-between md:ml-5 md:mr-5 p-1 text-gray-600">
                               <Link href="/Categories/Visa" class=" items-center p-1">
                                 <imgforbox src="/visaa.jpg"/>
-                                <span class="ml-2 p-2 md:w-14 animate-pulse">Visas</span>
+                                <span class="md:ml-2 p-2 md:w-14 animate-pulse">Visas</span>
                               </Link>
                               <Link href="/Categories/Tourism" class=" items-center p-1">
                                 <imgforbox src="/tour2.jpg"/>
-                                <span class="ml-2 p-2 md:w-14">Tours</span>
+                                <span class="md:ml-2 p-2 md:w-14">Tours</span>
                               </Link>
                               <div class=" items-center p-1" @click.prevent="openContact">
                                 <imgforbox src="/booking2.jpg"/>
-                                <span class="p-2 md:w-14">Contact</span>
+                                <span class="md:p-2 md:w-14">Contact</span>
                               </div>
                               <Link href="/Categories/Ticket" class=" items-center p-1">
                                 <imgforbox src="/ticket2.jpg"/>
-                                <span class=" p-2 md:w-14">Tickets</span>
+                                <span class=" md:p-2 md:w-14">Tickets</span>
                               </Link>
                             </div>
                     </div>

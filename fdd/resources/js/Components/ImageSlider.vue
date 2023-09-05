@@ -2,7 +2,7 @@
     <div class="slider-container">
       <div class="slider bg-black"> <!-- Set a fixed background color here -->
         <transition name="slide" mode="out-in">
-          <img :key="currentIndex" :src="currentImage" class="h-screen w-full slider-image" alt="Slider Image">
+          <img :key="currentIndex" :src="currentImage" class="  h-auto  md:h-screen w-full slider-image" alt="Slider Image">
         </transition>
       
         <div class="nav-buttons  flex justify-between items-center">
@@ -19,7 +19,7 @@
               
           </button>
         </div>
-        <div class="indicator-dots absolute bottom-10 left-0 right-0 flex justify-center">
+        <div class="indicator-dots hidden md:flex absolute bottom-10 left-0 right-0  justify-center">
           <span
             v-for="(image, index) in images"
             :key="index"
@@ -36,9 +36,9 @@
   import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
   
   const images = ref([
-    'https://res.cloudinary.com/ddrivhxfq/image/upload/v1693287042/c36qkb1zzvjfkgreak8z.jpg',
-    //'https://res.cloudinary.com/ddrivhxfq/image/upload/v1693208738/qhrepttc7mkzj4c9uujn.jpg',
-    'https://res.cloudinary.com/ddrivhxfq/image/upload/v1693287051/viyvqvdxvzbb29d5fh66.jpg'
+    '/HomePage.jpg',
+    '/wallpaper.jpg',
+    '/wallp.jpg'
   ]);
   
   const currentIndex = ref(0);
