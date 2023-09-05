@@ -11,7 +11,7 @@ class Ticket extends Model
     use HasFactory;
     use Sluggable;
 
-    protected $fillable=['image_path','title','description'];
+    protected $fillable=['image_path','title','description','homepage'];
 
     /**
      * Return the sluggable configuration array for this model.

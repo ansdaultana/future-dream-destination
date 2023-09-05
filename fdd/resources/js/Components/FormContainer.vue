@@ -16,7 +16,7 @@ const props=defineProps({
                <slot/>
             </div>
             <div class="w-1/3">
-           <ContactInfo/>
+           <ContactInfo :nav="false"/>
 
             </div>
 

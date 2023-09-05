@@ -6,6 +6,10 @@ import Footer from '@/Components/Footer.vue'
 import Services from '@/Components/Services.vue';
 import { Head } from '@inertiajs/vue3';
 import Categories from '@/Components/Categories.vue';
+import { provide,ref } from 'vue';
+const contact=ref(false);
+
+provide('contact',contact);
 </script>
 <template>
     <Head title="Future Dream Destination" />

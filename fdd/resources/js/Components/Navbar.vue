@@ -2,10 +2,17 @@
 import { Link } from '@inertiajs/vue3'
 import { ref } from 'vue';
 import SidebarForHomeVue from './SidebarForHome.vue';
+import ContactInfo from './ContactInfo.vue';
+import { inject } from 'vue'
+const contact = inject('contact')
 const sidebar=ref(false);
 const openSideBar=()=>{
     sidebar.value=!sidebar.value;
 }
+const openContact=()=>{
+    contact.value=!contact.value;
+}
+
 </script>
 
 <template>
@@ -44,7 +51,7 @@ const openSideBar=()=>{
                         Plane Tickets
                     </Link>
                 </div>
-                <div
+                <div @click.prevent="openContact"
                     class="hidden md:block hover:bg-slate-50 hover:opacity-30 border-white border md:px-4 md:py-2 flex justify-center items-center rounded-full hover:scale-105 transition-transform duration-200 ease-in-out hover:cursor-pointer hover:text-blue-600">
                    <span class="p-1">Contact Us</span> 
                 </div>
@@ -61,7 +68,14 @@ const openSideBar=()=>{
 
 </div>
 <div v-if="sidebar">
-    <SidebarForHomeVue/>
+    <SidebarForHomeVue :sidebar="sidebar" @updateValue="openSideBar"/>
 
 </div>
+
+<div v-if="contact" class="w-1/3 ">
+    <ContactInfo :nav="true" />
+
+</div>
+
+
 </template>

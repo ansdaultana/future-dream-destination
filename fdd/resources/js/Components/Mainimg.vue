@@ -1,6 +1,12 @@
 <script setup>
 import imgforbox from '@/Components/imgforbox.vue'
 import { Link } from '@inertiajs/vue3';
+import ContactInfo from './ContactInfo.vue';
+import { inject } from 'vue'
+const contact = inject('contact')
+const openContact=()=>{
+    contact.value=!contact.value;
+}
 </script>
 <template>
     <div class=" ">
@@ -31,9 +37,9 @@ import { Link } from '@inertiajs/vue3';
                                 <imgforbox src="/tour2.jpg"/>
                                 <span class="ml-2 p-2 md:w-14">Tours</span>
                               </Link>
-                              <div class=" items-center p-1">
+                              <div class=" items-center p-1" @click.prevent="openContact">
                                 <imgforbox src="/booking2.jpg"/>
-                                <span class="p-2 md:w-14">Booking</span>
+                                <span class="p-2 md:w-14">Contact</span>
                               </div>
                               <Link href="/Categories/Ticket" class=" items-center p-1">
                                 <imgforbox src="/ticket2.jpg"/>
@@ -46,6 +52,10 @@ import { Link } from '@inertiajs/vue3';
 
         </div>
     </div>
+    <div v-if="contact" class="w-1/3 ">
+      <ContactInfo :nav="true" />
+  
+  </div>
 </template>
 
 <style>

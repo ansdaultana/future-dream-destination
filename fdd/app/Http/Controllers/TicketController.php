@@ -29,13 +29,12 @@ class TicketController extends Controller
             'images' => 'image|required',
             'homepage' => 'boolean',
         ]);
-
         try {
             if ($attributes['images']) {
                 $path = $attributes['images']->store('uploads');
             }
 
-            Ticket::create([
+           $ticket= Ticket::create([
                 'title' => $attributes['title'],
                 'description' => $attributes['description'],
                 'image_path' => $path,
