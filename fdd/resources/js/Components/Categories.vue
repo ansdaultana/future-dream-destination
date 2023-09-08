@@ -39,7 +39,7 @@ const gotoCategory=(name)=>{
                         alt="Category Image"
                         class=" h-40 w-auto  object-cover rounded-md animate-bounce">
                         <img v-if="category.name==='Tourism'"
-                        :src="'/tourism.png'"
+                        :src="'/tourism22.png'"
                         alt="Category Image"
                         class=" h-40 w-auto  object-cover rounded-md animate-bounce">
                 </div>
