@@ -89,19 +89,7 @@
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
   }
   
-  .slide-enter, .slide-leave-to {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  
-  .slide-enter-to, .slide-leave {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  .slider {
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
-}
+ 
 
 .slider.hidden {
     opacity: 0;

@@ -19,18 +19,21 @@ const getWhatsAppLink = () => {
 <template>
     <div class="fixed bottom-20 right-16">
 
-    <div class="bg-slate-100 p-2 border-2 w-40 h-56  rounded-xl" v-if="show">
+    <div class="bg-white px-1 border-2 w-40 h-60  border-green-500  rounded-xl" v-if="show">
      <div class="flex items-center justify-end p-2  " @click.prevent="openmessage">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hover:bg-white rounded-full hover:text-red-600">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-500 hover:bg-slate-100 rounded-full hover:text-red-600">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
      </div>
+     <div class="text-gray-700 p-1 font-bold">
+        Write A message 
+     </div>
           
         <div class="flex items-center justify-center">
-         <textarea rows="4" class="w-28" v-model="messageS"/>
+         <textarea rows="4" class="w-28 focus:ring-green-500 focus:border-green-500  " v-model="messageS"/>
         </div>
         <div class="flex items-center justify-end">
-            <button class="bg-blue-500 py-2 px-4  focus:ring-blue-500 focus:border-blue-500 rounded-xl text-white m-2" @click.prevent="getWhatsAppLink">send</button> 
+            <button class="bg-green-500 py-2 px-4  focus:ring-green-500 focus:border-green-500 rounded-xl text-white m-2" @click.prevent="getWhatsAppLink">send</button> 
 
         </div>
      </div>
