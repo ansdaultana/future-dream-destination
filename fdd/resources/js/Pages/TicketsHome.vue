@@ -10,7 +10,7 @@ defineOptions({
 <template>
     <Head title="Tickets"/>
     <div class="  bg-slate-100 ">
-        <div class="text-black flex justify-center items-center text-2xl font-bold pt-10">
+        <div class="text-black flex justify-center items-center text-lg md:text-2xl font-bold p-2 pt-10">
             Explore Beyond Boundaries: Your Future Dream Destination Awaits You
 
         </div>
