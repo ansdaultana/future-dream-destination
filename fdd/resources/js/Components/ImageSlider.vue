@@ -2,7 +2,7 @@
     <div class="slider-container">
       <div class="slider bg-black"> <!-- Set a fixed background color here -->
         <transition name="slide" mode="out-in">
-          <img :key="currentIndex" :src="currentImage" class="  h-auto  md:h-screen w-full slider-image" alt="Slider Image">
+          <img :key="currentIndex" :src="currentImage" class="  h-40  md:h-screen w-full slider-image" alt="Slider Image">
         </transition>
       
         <div class="nav-buttons  flex justify-between items-center">

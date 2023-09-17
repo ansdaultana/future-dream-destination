@@ -16,8 +16,8 @@ const HomePageItems=computed(()=>page.props.homepageitems);
             <h1 class="font-bold font-sans text-xm md:text-xl ">Check out our Main Offers!</h1>
         </div>
         
-        <div class="w-full h-auto bg-slate-200 grid   pb-5 pt-5 grid-cols-2  justify-center  lg:grid-cols-4 rounded-xl" v-if="HomePageItems.length>0">
-            <div class=" p-1 gap-y-4 md:p-10" v-for="HomePageItem in HomePageItems">
+        <div class="w-full h-auto bg-slate-200 grid gap-y-5   pb-5 pt-5 grid-cols-2  justify-center  lg:grid-cols-4 rounded-xl" v-if="HomePageItems.length>0">
+            <div class=" p-1 gap-y-10 md:p-10" v-for="HomePageItem in HomePageItems">
 
                 <Card :item=HomePageItem   />
 

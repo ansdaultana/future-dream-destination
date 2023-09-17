@@ -122,7 +122,7 @@ const NotAdmin=(id)=>
               <div>
                 <img src="/johndoe.png" alt="" class="h-12 rounded-full">
               </div>
-              <div class="flex items-center ml-4">
+              <div class="flex items-center md:ml-4 ml-1">
                 <span v-text="request.name"></span>
               </div>
             </div>    
@@ -146,7 +146,7 @@ const NotAdmin=(id)=>
               <div @click.prevent="ViewModal(request)" v-if="ticket === false"
                 class="shadow-lg bg-white md:px-6 md:py-2 py-2 px-1 rounded-xl transition-transform hover:scale-105 flex">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6 mr-2">
+                  stroke="currentColor" class="w-6 h-6 mr-2 hidden md:block">
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -204,7 +204,7 @@ const NotAdmin=(id)=>
     transition-opacity duration-800 
     z-50  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
       :class="{ 'opacity-100 pointer-events-auto': openmodal, 'opacity-0 pointer-events-none': !openmodal }">
-      <div class="relative w-full max-w-md max-h-full">
+      <div class="relative w-72 md:w-full md:max-w-md max-h-full">
         <div class="relative bg-slate-300 rounded-lg shadow ">
           <button @click="ToggleModal" type="button"
             class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -224,7 +224,7 @@ const NotAdmin=(id)=>
 
             <h3 class="mb-5 text-lg font-normal text-gray-700 " v-if="ticket === true"> Are You sure you want to delete
               this?</h3>
-            <div class="w-80 m-4 h-40 overflow-y-scroll">
+            <div class="md:w-80 w-44 m-4 h-40 overflow-y-scroll">
               <span class="w-full" v-text="request.message">
 
               </span>

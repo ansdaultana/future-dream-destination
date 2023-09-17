@@ -17,7 +17,7 @@ const toggleAdmin = () => { admin.value = !admin.value }
 
 </script>
 <template>
-    <div class="w-1/6 h-screen    bg-slate-100 text-black">
+    <div class="w-1/6 h-screen text-xs md:text-lg   bg-slate-100 text-black">
         <div class="flex  md:pt-6  md:pl-4">
             <img src="/logo.png" alt="" class="h-12">
 

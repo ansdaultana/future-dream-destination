@@ -39,7 +39,7 @@ const submitForm = (slug) => {
                 <div class="flex">
 
                     <div class=" mt-4 ml-4 md:m-10">
-                        <img :src="item.image_base64" alt="" class="rounded-xl hover:cursor-pointer md:h-96 md:w-96 w-40 h-40  hover:scale-105 transition-transform ease-in-out duration-300">
+                        <img :src="item.image_base64" alt="" class="hidden md:block rounded-xl hover:cursor-pointer md:h-96 md:w-96 w-40 h-40  hover:scale-105 transition-transform ease-in-out duration-300">
                     </div>
                     <div>
                         <div class="mt-4  md:mt-10 md:mb-5 text-2xl font-bold">

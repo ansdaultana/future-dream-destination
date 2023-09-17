@@ -39,14 +39,15 @@ const openContact=()=>{
                                 <imgforbox src="/tour2.jpg"/>
                                 <span class="md:ml-2 p-2 md:w-14">Tours</span>
                               </Link>
-                              <div class=" items-center p-1" @click.prevent="openContact">
-                                <imgforbox src="/booking2.jpg"/>
-                                <span class="md:p-2 md:w-14">Contact</span>
-                              </div>
                               <Link href="/Categories/Ticket" class=" items-center p-1">
                                 <imgforbox src="/ticket2.jpg"/>
                                 <span class=" md:p-2 md:w-14">Tickets</span>
                               </Link>
+                              <div class=" items-center p-1" @click.prevent="openContact">
+                                <imgforbox src="/booking2.jpg"/>
+                                <span class="md:p-2 md:w-14">Contact</span>
+                              </div>
+                            
                             </div>
                     </div>
                 </div>

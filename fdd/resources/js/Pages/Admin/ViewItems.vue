@@ -149,7 +149,7 @@ const formatUpdatedAt = (date) => {
       <div name="panel" class=" mr-1 absolute  rounded-md border-slate-300 w-full h-full   border-t ">
         <div class=" p-2 bg-slate-50 ">
           <div class="flex bg-blue-400 p-2 border-2  rounded-lg justify-between text-white">
-            <div class=" ml-5 w-36  ">
+            <div class=" ml-5 w-36 hidden md:block ">
               Image
             </div>
             <div class=" ml-5 w-36  ">
@@ -196,11 +196,11 @@ const formatUpdatedAt = (date) => {
         <ul role="list"
           class="divide-y-8 divide-white md:ml-5 m-2 md:mr-5  overflow-y-scroll overflow-x-hidden h-[500px] scrollbar  text-slate-800 font-serif">
           <li v-for="item in items" :key="item.ID"
-            class="cursor-pointer hover:shadow-md rounded-xl flex items-center justify-center bg-slate-100 flex justify-between gap-x-6 py-5 shadow-xl shadow-blue-100 ">
-            <div class="ml-5">
+            class="cursor-pointer hover:shadow-md rounded-xl  items-center justify-center bg-slate-100 flex justify-between gap-x-6 py-5 shadow-xl shadow-blue-100 ">
+            <div class="ml-5 hidden md:block">
               <img :src="item.image_base64" alt="" class="h-20 rounded-lg">
             </div>
-            <div class="flex ml-20 w-36 ">
+            <div class="flex ml-5 md:ml-20 w-36 ">
               <span v-text="item.title"></span>
             </div>
 

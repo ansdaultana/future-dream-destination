@@ -26,12 +26,12 @@ const generateLink = (category, slug) => {
     <Link :href="generateLink(props.item.category, props.item.slug)">
 
     <div
-        class="shadow-[#61dfdf9c] items-center ml-1 bg-white w-44 h-60 md:h-80 md:w-60   rounded-xl shadow-lg hover:scale-105 transition-transform duration-200 hover:cursor-pointer ease-in-out">
+        class="shadow-[#61dfdf9c] items-center ml-1 bg-white w-44 h-64 md:h-80 md:w-60   rounded-xl shadow-lg hover:scale-105 transition-transform duration-200 hover:cursor-pointer ease-in-out">
         <div class="items-center flex justify-center">
-            <img :src="props.item.image_base64" alt="" class="md:h-48 w-auto h-32 rounded-xl p-1 mt-1 hover:scale-110 transition-transform ease-in-out duration-300 "
+            <img :src="props.item.image_base64" alt="" class="md:h-48 w-auto h-40 rounded-xl p-1 mt-1 hover:scale-110 transition-transform ease-in-out duration-300 "
                 :class="{ 'mt-5 md:h-60': props.item.category === 'Ticket','p-2 ': props.item.category === 'Visa' || props.item.category === 'Tourism', }">
         </div>
-        <div class="p-1 h-8 text-lg font-bold items-center flex ml-2 animate-bounce"
+        <div class="pt-1 h-6 text-lg font-bold items-center flex ml-2 animate-bounce"
             :class="{ 'justify-center ': props.item.category === 'Visa' || props.item.category === 'Tourism', 'justify-center mt-3 text-blue-500': props.item.category === 'Ticket' }">
             <h1 v-text="props.item.title"></h1>
         </div>

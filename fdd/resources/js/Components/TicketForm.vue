@@ -27,21 +27,21 @@ const submitForm = () => {
     <FormContainer title="Book your Flight">
         <form @submit.prevent="submitForm" class="mt-6 text-sm">
             <div class="mt-4">
-                <label class="block text-gray-700 font-medium mb-1" for="name">Name</label>
+                <label class="block text-gray-700 text-sm font-medium mb-1" for="name">Name</label>
                 <input v-model="ticketReq.name" id="name" name="name" type="text"
                     class="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
                 <div v-if="ticketReq.errors.name" class="text-red-500 mt-1">{{ ticketReq.errors.name }}</div>
 
             </div>
-            <div class="flex mt-4 space-x-4">
-                <div class="w-1/2">
+            <div class="md:flex mt-4 md:space-x-4">
+                <div class="md:w-1/2">
                     <label class="block text-gray-700 font-medium mb-1" for="email">Email</label>
                     <input v-model="ticketReq.email" id="email" name="email" type="email" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
                     <div v-if="ticketReq.errors.email" class="text-red-500 mt-1">{{ ticketReq.errors.email }}</div>
                 </div>
-                <div class="w-1/2">
-                    <label class="block text-gray-700 font-medium mb-1" for="phone">Phone (without country code & initial
+                <div class="md:w-1/2">
+                    <label class="block text-gray-700 font-medium text-xs mb-1" for="phone">Phone (without country code & initial
                         0)</label>
                     <input v-model="ticketReq.phone" id="phone" name="phone" type="tel" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">

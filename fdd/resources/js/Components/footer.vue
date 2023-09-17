@@ -15,8 +15,8 @@
             <div class="flex flex-col items-center md:items-start">
                 <h3 class="text-xl font-semibold">Contact Us</h3>
                 <p class="mt-2 text-white">
-                    Email: info@fdd.com<br>
-                    Phone: 123-456-7890
+                    Email: Info@fddtravels.com<br>
+                    Phone: +971553033453
                 </p>
             </div>
             <div class="flex flex-col items-center md:items-start">

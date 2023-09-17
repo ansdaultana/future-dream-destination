@@ -7,7 +7,7 @@ const props=defineProps({
 </script>
 
 <template>
-    <div class="p-10 h-auto flex items-center justify-center shadow-xl rounded-xl ">
+    <div class="md:p-10 p-1 h-auto flex items-center justify-center shadow-xl rounded-xl ">
         <div class="bg-white shadow-md rounded-lg p-2 w-full md:p-8 md:w-2/3 flex">
             <div class="w-2/3 h-auto p-4">
                 <div class="text-lg" v-text="props.title">

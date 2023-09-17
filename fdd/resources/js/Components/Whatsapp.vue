@@ -9,9 +9,8 @@ const removeInitialZeroAndOpenWhatsApp = (originalPhoneNumber) => {
 };
 
 const getWhatsAppLink = () => {
-    console.log(messageS.value);
   const message = encodeURIComponent(messageS.value);
-  const whatsappLink = `https://wa.me/3030101935?text=${message}`;
+  const whatsappLink = `https://wa.me/+971553033453?text=${message}`;
   window.open(whatsappLink, '_blank');
 };
 
